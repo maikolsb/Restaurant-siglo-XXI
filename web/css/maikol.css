@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.2
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2017 Daniel Eden
+ */
+
+body{
+background-color:white  ;
+font-family:arial;
+}
+
+#main-container{
+ margin:150px auto;
+ width:600px;
+}
+
+table{
+background-color:white  ;
+text-align:center;
+border-collapse:collapse;
+width:100%;
+
+}
+
+th,td{
+border:solid 1px black;
+padding:20px;
+}
+
+thead{
+background-color:  #212529;
+border-bottom:solid 5px #343a40;
+color:#f8f9fa;
+}
+
+tr:nth-child(eve){
+background-color: #ddd;
+}
+
+tr:hover{
+background-color: black;
+color:#da542e;
+}
