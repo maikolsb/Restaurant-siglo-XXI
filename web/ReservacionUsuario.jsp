@@ -1,6 +1,6 @@
 <%-- 
-    Document   : usuarioReservacion
-    Created on : 19-05-2020, 19:24:19
+    Document   : ReservacionUsuario
+    Created on : 21-06-2020, 0:19:51
     Author     : maikolsb
 --%>
 
@@ -85,13 +85,20 @@
                                     <li>
                                         <a href="#">Nosotros</a>
                                     </li>
-                                    
+
                                     <li>
                                         <a href="#">Contacto</a>
                                     </li>
 
                                     <li>
-                                        <a href="#">Iniciar sesion</a>
+                                                            <%
+                        HttpSession sesion = request.getSession();
+                        String usuario = sesion.getAttribute("elterriblenombre").toString();
+                        String maikol = "prueba";
+                        out.print("<a href='#' >"  + usuario + "</a>");
+                    %>
+                                        
+                                        
                                     </li>
 
                                 </ul>
@@ -118,6 +125,17 @@
 
             <!-- - -->
             <ul class="menu-sidebar p-t-95 p-b-70">
+
+                <li class="t-center m-b-13">
+
+                    <%
+                     
+                        out.print("<a href='#' class='txt19'>"  + usuario + "</a>");
+                    %>
+
+       
+                </li>
+
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Inicio</a>
                 </li>
@@ -134,14 +152,25 @@
                     <a href="#" class="txt19">Nosotros</a>
                 </li>
 
-                
+
 
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Contacto</a>
                 </li>
                 
                 <li class="t-center m-b-33">
-                    <a href="#" class="txt19">Inicia sesion</a>
+                                                        <%
+                                        out.print(" <a class='txt19' name='cerrar' href='LoginPagina.jsp?cerrar=true'><i class='fa fa-power-off m-r-5 m-l-5'></i>Cerrar sesion</a>");
+
+                                        if (request.getParameter("cerrar") != null) {
+                                            request.getSession().invalidate();
+                                            response.sendRedirect("LoginPagina.jsp");
+                                            return;
+
+                                        }
+
+                                    %>
+
                 </li>
 
                 <li class="t-center">
@@ -262,7 +291,15 @@
                                     </span>
 
                                     <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="txtNombre" placeholder="Id_Usiario" required>
+                                      
+                                        
+                                                                                                    <%
+                        
+                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
+                        String maikoll = "prueba";
+                        out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='"+ usuarioo +"'>");
+                
+%>
                                     </div>
                                 </div>
 
@@ -298,13 +335,13 @@
                                         Telefono
                                     </span>
                                     <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" placeholder="Telefono" required>
+                                        <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" min="10000000" max="999999999"  placeholder="Telefono" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <!-- Email -->
-                                    
+
                                     <div >
                                         <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtEstado" placeholder="Numero" value ="1">
                                     </div>

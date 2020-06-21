@@ -5,20 +5,21 @@
  */
 package Servlet;
 
-import Controlador.Consultas;
-import Ent.Usuario;
+import Clases.EditarMesas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Maikolsb
+ * @author maikolsb
  */
-public class RegistrarUsuarios extends HttpServlet {
+@WebServlet(name = "servEditarMesas", urlPatterns = {"/servEditarMesas"})
+public class servEditarMesas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,28 +31,54 @@ public class RegistrarUsuarios extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+           throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-       
-        String rut = request.getParameter("rut");
-        String nombre = request.getParameter("nombre");
-        String apellidopat = request.getParameter("apellidopat");
-        String apellidomat = request.getParameter("apellidomat");
-        String correo = request.getParameter("correo");
-        String contraseña = request.getParameter("password");
-        String rol = request.getParameter("rol");
-        String estado = request.getParameter("estado");
-
-        Consultas co = new Consultas();
-
-        if (co.registrar(rut,nombre,apellidopat,apellidomat,correo,contraseña,Integer.parseInt(rol),Integer.parseInt(estado))) {
-            response.sendRedirect("AdminUsuarios.jsp");
-        } else {
-            response.sendRedirect("error.jsp");
-        }
-       
         
+        String id = request.getParameter("id");
+        String numero = request.getParameter("numero"); 
+        String estado = request.getParameter("estado");
+        
+        
+        
+        String idMesa = request.getParameter("idMesa");
+        
+        System.out.println(idMesa);
+
+      if (request.getParameter("BtnId") != null) {
+       response.sendRedirect("AdminMesasEditar.jsp?id="+idMesa);
+      }
+          
+      
+
+         EditarMesas co = new EditarMesas();
+
+        if (request.getParameter("BtnActualizar") != null) {
+            if (co.Actualizar( Integer.parseInt(estado),Integer.parseInt(numero),Integer.parseInt(idMesa))) {
+               out.println("<script>alert('cliente ACTUALIZADO')</script>");
+                response.sendRedirect("AdminUsuariosEditar.jsp");
+            } else {
+      
+                out.println("<script>alert('cliente NO ACTUALIZADO')</script>");
+                response.sendRedirect("error.jsp");
+            }
+
+        }
+
+//        if (request.getParameter("BtnActualizar") != null) {
+//            Usuario us = new Usuario(Integer.parseInt(id), rut, nombre, apellidopat, apellidomat, correo, contraseña, Integer.parseInt(estado));
+//System.out.println(" despues del btn");
+//            if (!Neg.NegUsuario.ActualizarUsuario(us)) {
+//                out.println("<script>alert('cliente NO ACTUALIZADO')</script>");
+//                response.sendRedirect("Login.jsp");
+//
+//            } else {
+//                out.println("<script>alert('cliente ACTUALIZADO')</script>");
+//                response.sendRedirect("CrudCliente.jsp");
+//
+//            }
+//
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

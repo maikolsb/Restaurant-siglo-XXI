@@ -1,15 +1,14 @@
 <%-- 
-    Document   : AdminUsuarios
-    Created on : 12-05-2020, 22:23:45
+    Document   : AdminMesas
+    Created on : 19-06-2020, 17:47:37
     Author     : maikolsb
 --%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session = "true"%>
-
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
@@ -18,7 +17,7 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="paginaAdmin/assets/images/favicon.png">
-        <title>Administrador de usuarios</title>
+        <title>Administrador de mesas</title>
         <!-- Custom CSS -->
         <link rel="stylesheet" type="text/css" href="paginaAdmin/assets/extra-libs/multicheck/multicheck.css">
         <link href="paginaAdmin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -33,8 +32,11 @@
 
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+
     </head>
     <body>
+
 
 
 
@@ -43,12 +45,7 @@
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
-            </div>
-        </div>
+
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -107,7 +104,12 @@
                         <ul class="navbar-nav float-left mr-auto">
                             <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
                             <!-- ============================================================== -->
+                            <!-- create new -->
+                            <!-- ============================================================== -->
 
+                            <!-- ============================================================== -->
+                            <!-- Search -->
+                            <!-- ============================================================== -->
 
                         </ul>
                         <!-- ============================================================== -->
@@ -120,10 +122,6 @@
 
                             <!-- ============================================================== -->
                             <!-- End Comment -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- Messages -->
-                            <!-- ============================================================== -->
 
                             <!-- ============================================================== -->
                             <!-- End Messages -->
@@ -185,8 +183,6 @@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminReservas.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de Reservas</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminInsumo.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de insumos</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminMesas.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de mesas</span></a></li>
-
-
                             </li>
                         </ul>
                     </nav>
@@ -207,7 +203,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Administrador de Cliente</h4>
+                            <h4 class="page-title">Administrador de Reservas</h4>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -228,98 +224,6 @@
 
 
 
-                </br>
-                <div style="padding-left:30px">
-                    <button    type="button" class="btn btn-dark float-left" data-toggle="modal" data-target="#hulk">Agregar nuevo cliente</button>
-                </div>
-                <div class="container">          
-                    <div class="modal fade" id="hulk" tabindex="-1" role="dialog" aria-labelledby="hulkLabel">
-                        <div class="modal-dialog" role="document" style="z-index: 9999; width: 450px">
-                            <div class="modal-content">
-                                <div class="modal-header">                            
-                                    <h4 class="modal-title" id="myModalLabel">Agregar un nuevo cliente</h4>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form class="form-horizontal m-t-20" method="post" action="nuevousuario">
-                                        <div class="row p-b-30">
-                                            <div class="col-12">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control form-control-lg" placeholder="Ingrese su rut" name="rut" aria-label="rut" aria-describedby="basic-addon1" required>
-                                                </div>  
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-success text-white" id="basic-addon"><i class="ti-user"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control form-control-lg" placeholder="Ingrese su nombre" name="nombre"  aria-label="nombre" aria-describedby="basic-addon1" required>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-success text-white" id="basic-addon2"><i class="ti-user"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control form-control-lg" placeholder="Ingrese su apellido paterno" name="apellidopat" aria-label="apellidopat" aria-describedby="basic-addon1" required>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-success text-white" id="basic-addon2"><i class="ti-user"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control form-control-lg" placeholder="Ingrese su apellido materno" name="apellidomat" aria-label="apellidomat" aria-describedby="basic-addon1" required>
-                                                </div>
-
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-cyan text-white" id="basic-addon1"><i class="ti-email"></i></span>
-                                                    </div>
-                                                    <input type="email" class="form-control form-control-lg" placeholder="Ingrese su correo"  name="correo" aria-label="correo" aria-describedby="basic-addon1" required>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                                    </div>
-                                                    <input type="password" class="form-control form-control-lg" placeholder="Ingrese una contraseña" name="password" id="password" aria-label="Password" aria-describedby="basic-addon1" required>
-                                                </div>
-
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                                    </div>
-                                                    <input type="password" class="form-control form-control-lg" placeholder="Repetir contraseña" name="password"  id="confirm_password" aria-label="Password" aria-describedby="basic-addon1" required>
-                                                </div>
-
-
-                                                <div class="input-group mb-3">                           
-                                                    <input type="hidden" class="form-control form-control-lg" placeholder="rol" name="rol" value="2"  id="rol" aria-label="rol" aria-describedby="basic-addon1" >
-                                                </div>
-
-                                                <div class="input-group mb-3">                           
-                                                    <input type="hidden" class="form-control form-control-lg" placeholder="estado" name="estado" value="1"  id="confirm_password" aria-label="estado" aria-describedby="basic-addon1" >
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <script src="js/maikol.js" type="text/javascript"></script>
-                                        <div class="row border-top border-secondary">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <div class="p-t-20">
-                                                        <button class="btn btn-block btn-lg btn-info" id="BtnAgregar" name="BtnAgregar" type="submit">Registrarse</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>                    
-                        </div>
-                    </div>
-                </div>   
-                <br>
-
-
-
                 <%            //CONECTANOD A LA BASE DE DATOS:
                     Connection con;
                     String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -335,7 +239,7 @@
                     ResultSet rs;
                     smt = con.createStatement();
 
-                    rs = smt.executeQuery("select * from usuario");
+                    rs = smt.executeQuery("select * from mesa");
 
                     //Creamo la Tabla:     
                 %>
@@ -353,13 +257,10 @@
                                             <thead>
                                                 <tr> 
                                                     <th class="text-center">Id</th>
-                                                    <th class="text-center">Rut</th>
-                                                    <th class="text-center">Nombre</th>
-                                                    <th class="text-center">Apellido Paterno</th>
-                                                    <th class="text-center">Apellido Materno</th>
-                                                    <th class="text-center">Correo</th>
+                                                    <th class="text-center">Numero de mesa</th>
                                                     <th class="text-center">Estado</th>
                                                     <th class="text-center">Acciones</th>
+
 
                                                 </tr>
                                             </thead>
@@ -368,23 +269,25 @@
                                                 %>
                                                 <tr>
                                                     <td class="text-center"><%= rs.getString("id")%></td>
-                                                    <td class="text-center"><%= rs.getString("rut")%></td>
-                                                    <td class="text-center"><%= rs.getString("nombre")%></td>
-                                                    <td class="text-center"><%= rs.getString("apellidopat")%></td>
-                                                    <td class="text-center"><%= rs.getString("apellidomat")%></td>
-                                                    <td class="text-center"><%= rs.getString("correo")%></td>
-                                                    <td class="text-center"><%= rs.getString("estado")%></td>
-
+                                                    <td class="text-center"><%= rs.getString("numero")%></td>
+                                                    <%
+                                                        if (rs.getInt("estado") == 1) {
+                                                    %>
+                                                    <td class="text-center"> Activo</td>
+                                                    <%}%> <%
+                                                        if (rs.getInt("estado") >= 2) {
+                                                    %>
+                                                    <td class="text-center"> Inactivo</td>
+                                                    <%}%> 
                                                     <td>
-                                                        <form  method="post" action="servEditarUsuario">
-                                                            <input type="hidden" id="idUsuario" name="idUsuario" value="<%= rs.getString("id")%>">
+                                                        <form  method="post" action="servEditarMesas">
+                                                            <input type="hidden" id="idMesa" name="idMesa" value="<%= rs.getString("id")%>">
 
-                                                            <button    type="submit" name="BtnId" class="btn btn-dark float-left" >Editar Cliente</button>
+                                                            <button    type="submit" name="BtnId" class="btn btn-dark float-left" >Editar Mesa</button>
 
 
                                                         </form>
                                                     </td>
-
 
 
                                                 </tr>
@@ -393,13 +296,10 @@
                                             <tfoot>
                                                 <tr>
                                                     <th class="text-center">Id</th>
-                                                    <th class="text-center">Rut</th>
-                                                    <th class="text-center">Nombre</th>
-                                                    <th class="text-center">Apellido Paterno</th>
-                                                    <th class="text-center">Apellido Materno</th>
-                                                    <th class="text-center">Correo</th>
+                                                    <th class="text-center">Numero de mesa</th>
                                                     <th class="text-center">Estado</th>
                                                     <th class="text-center">Acciones</th>
+
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -409,13 +309,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
 
 
 
@@ -492,6 +385,18 @@
                         }
                 );
             });</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
     </body>
 </html>

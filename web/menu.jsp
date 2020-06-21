@@ -15,9 +15,9 @@
         <a href="menu.jsp"></a>
         <h1> Has enviado una reservacion correctamente...</h1>
         <br>
-        Click acá para volver a: <a href="usuarioReservacion.jsp"> Reservacion </a>
+        Click acá para volver a: <a href="ReservacionUsuario.jsp"> Reservacion </a>
         <br>
-      
+     
     </body>
     
 </html>

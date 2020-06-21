@@ -177,7 +177,7 @@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminUsuarios.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de Clientes</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminReservas.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de Reservas</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminInsumo.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de insumos</span></a></li>
-
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="AdminMesas.jsp" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Administrador de mesas</span></a></li>
                             </li>
                         </ul>
                     </nav>
