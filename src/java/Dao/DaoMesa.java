@@ -5,9 +5,9 @@
  */
 package Dao;
 
-
-
 import Ent.Mesa;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,18 +20,16 @@ import java.util.logging.Logger;
  * @author maikolsb
  */
 public class DaoMesa {
-    
-     public static boolean insert(Mesa me)
-    {
+
+    public static boolean insert(Mesa me) {
 //           if (cli.getId()!=1000) {
-       
-            String sql= String.format("INSERT INTO mesa(id, numero, estado)"
-                    +"VALUES (%d,%d,%d)"
-                    
-            ,me.getId()
-            ,me.getNumero()
-            ,me.getEstado()
-                );
+
+        String sql = String.format("INSERT INTO mesa(id, numero, estado)"
+                + "VALUES (%d,%d,%d)",
+                 me.getId(),
+                 me.getNumero(),
+                 me.getEstado()
+        );
 
         return true;
 //        
@@ -39,58 +37,42 @@ public class DaoMesa {
 //        return false;
 //        
     }
-     
 
-      
-      
-           
-      public  static boolean update(Mesa me)        
-    {
-               if (me.getNumero()!=10000) {
-        String sql= String.format("UPDATE mesa SET  numero =%d ,estado =%d WHERE id= %d "
-                
-           
-            ,me.getId()
-           ,me.getNumero()
-          ,me.getEstado()
-       
+    public static boolean update(Mesa me) {
+        if (me.getNumero() != 10000) {
+            String sql = String.format("UPDATE mesa SET  numero =%d ,estado =%d WHERE id= %d ",
+                     me.getId(),
+                     me.getNumero(),
+                     me.getEstado()
+            );
 
-        );
-                
-        
-        return true;
-         }return false;
+            return true;
+        }
+        return false;
     }
-     
-      
-      
-      
-      
-      
-        public static List<Mesa> listarMesa()
-    {
-        List<Mesa> lista =new ArrayList<>();
-          String sql = String.format("Select * from mesa"
-               // + "where id = %d"
-                /*,cliente.getId()*/);
+
+    public static List<Mesa> listarMesa() {
+        List<Mesa> lista = new ArrayList<>();
+        String sql = String.format("Select * from mesa where estado=1");
         
-        ResultSet curCli= Controlador.Conexion.getInstance().select(sql);
+        Connection con = new Controlador.Conexion().getConnection();
         try {
-            while(curCli.next())
-            {
-                Mesa me =new Mesa(curCli.getInt("id")  
-                 , curCli.getInt("numero" )
-                , curCli.getInt("estado")
-             );
-                
-                lista.add(me);    
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet curCli = pst.executeQuery();
+            while (curCli.next()) {
+                Mesa me = new Mesa(curCli.getInt("id"),
+                         curCli.getInt("numero"),
+                         curCli.getInt("estado")
+                );
+
+                lista.add(me);
             }
+            con.close();
             return lista;
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             return null;
         }
     }
-      
-      
-    
+
 }

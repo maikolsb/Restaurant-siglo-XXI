@@ -18,10 +18,10 @@ import java.sql.Statement;
 public class Conexion {
 
     
-    private String USERNAME = "jimin";
-    private String PASSWORD = "jimin";
+    private String USERNAME = "sigloxxi";
+    private String PASSWORD = "equipo3";
     private String CLASSNAME = "oracle.jdbc.driver.OracleDriver";
-    private String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+    private String URL = "jdbc:oracle:thin:@www.cittsb.cl:1521:XE";
     private Connection con;
     
     
@@ -42,27 +42,14 @@ public class Conexion {
     public Connection getConnection() {
         return con;
     }
-
-    public static void main(String[] args) {
-        Conexion con = new Conexion();
-    }
-
-    
-    
-    
-    
-    
     
     
     
     // harrys
     public static Conexion getInstance() {
-        System.out.println("toy en get instance");
         if (bd == null) {
             bd = new Conexion();
-            System.out.println("me cai en getinstance");
         }
-
         return bd;
     }
 
@@ -71,7 +58,7 @@ public class Conexion {
             ResultSet rs = st.executeQuery(sql);
             return rs;
         } catch (SQLException ex) {
-
+            System.out.println(ex.getMessage());
         }
         return null;
     }

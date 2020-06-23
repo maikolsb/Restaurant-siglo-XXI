@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author maikolsb
@@ -38,15 +37,13 @@ public class servReservita extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        
+
 //                private String fecha;
 //    private String hora;
 //    private String cantidad;
 //    private String nombre;
 //    private String correo;
 //    private String mesa;
-
         String fecha = request.getParameter("txtFecha");
         String hora = request.getParameter("txtHora");
         String cantidad = request.getParameter("txtCantidad");
@@ -55,17 +52,26 @@ public class servReservita extends HttpServlet {
         String mesa_id = request.getParameter("txtMesa");
         String estado = request.getParameter("txtEstado");
 
-        Reservita re = new Reservita();
+        try {
+            int uIdInt = Integer.parseInt(usuario_id);
+            int telefonoInt = Integer.parseInt(telefono);
+            int mesaIdInt = Integer.parseInt(mesa_id);
+            int estadoInt = Integer.parseInt(estado);
 
-        if (re.registrar(fecha,hora,cantidad,Integer.parseInt(usuario_id),Integer.parseInt(telefono),Integer.parseInt(mesa_id),Integer.parseInt(estado))) {
-            response.sendRedirect("menu.jsp");
-        } else {
+            Reservita re = new Reservita();
+            if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt)) {
+                response.sendRedirect("menu.jsp");
+            } else {
+                response.sendRedirect("error.jsp");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             response.sendRedirect("error.jsp");
         }
 
     }
 
-     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -4,6 +4,8 @@
     Author     : maikolsb
 --%>
 
+<%@page import="Ent.Mesa"%>
+<%@page import="Dao.DaoMesa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -92,8 +94,8 @@
 
                                     <li>
                                         <%
-                                            HttpSession sesion = request.getSession();
-                                            String usuario = sesion.getAttribute("elterriblenombre").toString();
+                                            
+                                            String usuario = session.getAttribute("elterriblenombre").toString();
                                             String maikol = "prueba";
                                             out.print("<a href='#' >" + usuario + "</a>");
                                         %>
@@ -297,18 +299,11 @@
                                     <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                         <!-- Select2 -->
                                         <select class="selection-1" name="txtMesa" required>
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
+                                            <%
+                                            for(Mesa m : DaoMesa.listarMesa()){
+                                                out.print("<option>"+m.getNumero()+"</option>");
+                                            }
+                                            %>
                                         </select>
                                     </div>
                                 </div>
@@ -337,9 +332,9 @@
                                     <!-- Name -->
                                     <div >
 
-                                        <%                                                                                                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
-                                            String maikoll = "prueba";
-                                            out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='" + usuarioo + "'>");
+                                        <%  
+                                            String usuarioid = session.getAttribute("elterriblenombre2").toString();
+                                            out.print("<input type='hidden' name='txtNombre' value='" + usuarioid + "'>");
 
                                         %>
                                     </div>

@@ -39,17 +39,13 @@ public class servUsuarioLogin extends HttpServlet {
         String rut = request.getParameter("rut");
         String contraseña = request.getParameter("password");
 
-        Consultas co = new Consultas();
-        Consultas coo = new Consultas();
-    Consultas cooo = new Consultas();
-
-        if (co.autenticacion(rut, contraseña)) {
+        if (new Consultas().autenticacion(rut, contraseña)) {
             //co.obtenerUsuario(rut);
             System.out.println();
 
             HttpSession sesion = request.getSession();
-            sesion.setAttribute("elterriblenombre", coo.maquina(rut, contraseña));
-            sesion.setAttribute("elterriblenombre2", cooo.maquinaId(rut, contraseña));
+            sesion.setAttribute("elterriblenombre", new Consultas().maquina(rut, contraseña));
+            sesion.setAttribute("elterriblenombre2", new Consultas().maquinaId(rut, contraseña));
 
             response.sendRedirect("ReservacionUsuario.jsp");
         } else {
