@@ -58,7 +58,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="#">
-                                <img src="usuarios/images/icons/logosigloxx.png" alt="" width="500" height="100" >
+                                <img src="usuarios/images/icons/logosigloxx.png" alt="" width="70" height="70" >
                             </a>
                         </div>
 
@@ -262,6 +262,208 @@
                                     </span>
 
                                     <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                      
+                                        
+                                                                                                    <%
+                        
+                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
+                        String maikoll = "prueba";
+                        out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='"+ usuarioo +"'>");
+                
+%>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <!-- People -->
+                                    <span class="txt9">
+                                        Numero de mesa
+                                    </span>
+
+                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                        <!-- Select2 -->
+                                        <select class="selection-1" name="txtMesa" required>
+                                            <option >1</option>
+                                            <option >2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Email -->
+                                    <span class="txt9">
+                                        Telefono
+                                    </span>
+                                    <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                        <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" min="10000000" max="999999999"  placeholder="Telefono" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Email -->
+
+                                    <div >
+                                        <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtEstado" placeholder="Numero" value ="1">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="wrap-btn-booking flex-c-m m-t-6">
+                                <!-- Button3 -->
+                                <button type="submit" id="BtnAgregar" name="BtnAgregar" class="btn3 flex-c-m size13 txt11 trans-0-4">Reservar una mesa</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="info-reservation flex-w p-t-80">
+                    <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
+                        <h4 class="txt5 m-b-18">
+                            Reserve por telefono
+                        </h4>
+
+                        <p class="size25">
+                            Llamanos para reservar 
+                            <span class="txt25"> a este numero</span>
+
+                            <span class="txt25"> </span>
+
+                            <span class="txt24">(+569) 345 6889</span>
+                            o envianos un correo 
+                        </p>
+                    </div>
+
+                    <div class="size24 w-full-md p-t-40">
+                        <h4 class="txt5 m-b-18">
+                            Reservar para eventos
+                        </h4>
+
+                        <p class="size26">
+                            llamanos
+                            <span class="txt24">(+569) 345 6889</span>
+                            , para reservar
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        	<section class="section-booking bg1-pattern p-t-100 p-b-110">
+	<div class="t-center">
+						<span class="tit2 t-center">
+							Reservacion
+						</span>
+
+						<h3 class="tit3 t-center m-b-35 m-t-2">
+							Reserva una mesa
+						</h3>
+					</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 p-b-30">
+					
+
+
+                        <form action="servReservita" method="post" class="wrap-form-reservation size22 m-l-r-auto">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- Date -->
+                                    <span class="txt9">
+                                        Fecha
+                                    </span>
+
+                                    <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                        <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="txtFecha" required>
+                                        <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Time -->
+                                    <span class="txt9">
+                                        Hora
+                                    </span>
+
+                                    <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                        <!-- Select2 -->
+                                        <select class="selection-1" name="txtHora" required>
+                                            <option value="9:00">9:00</option>
+                                            <option>9:30</option>
+                                            <option>10:00</option>
+                                            <option>10:30</option>
+                                            <option>11:00</option>
+                                            <option>11:30</option>
+                                            <option>12:00</option>
+                                            <option>12:30</option>
+                                            <option>13:00</option>
+                                            <option>13:30</option>
+                                            <option>14:00</option>
+                                            <option>14:30</option>
+                                            <option>15:00</option>
+                                            <option>15:30</option>
+                                            <option>16:00</option>
+                                            <option>16:30</option>
+                                            <option>17:00</option>
+                                            <option>17:30</option>
+                                            <option>18:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- People -->
+                                    <span class="txt9">
+                                        Cantidad de personas
+                                    </span>
+
+                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                        <!-- Select2 -->
+                                        <select class="selection-1" name="txtCantidad" required>
+                                            <option value="1" >1 Persona</option>
+                                            <option value="2">2 Personas</option>
+                                            <option value="3">3 Personas</option>
+                                            <option value="4">4 Personas</option>
+                                            <option value="5">5 Personas</option>
+                                            <option value="6">6 Personas</option>
+                                            <option value="7">7 Personas</option>
+                                            <option value="8">8 Personas</option>
+                                            <option value="9">9 Personas</option>
+                                            <option value="10">10 Personas</option>
+                                            <option value="11">11 Personas</option>
+                                            <option value="12">12 Personas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- Name -->
+                                    <span class="txt9">
+                                        Id del usuario
+                                    </span>
+
+                                    <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                         <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="txtNombre" placeholder="Id_Usiario" required>
                                     </div>
                                 </div>
@@ -320,41 +522,21 @@
 
                             </div>
                         </form>
-                    </div>
-                </div>
+				</div>
+				
 
-                <div class="info-reservation flex-w p-t-80">
-                    <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
-                        <h4 class="txt5 m-b-18">
-                            Reserve por telefono
-                        </h4>
-
-                        <p class="size25">
-                            Llamanos para reservar 
-                            <span class="txt25"> a este numero</span>
-
-                            <span class="txt25"> </span>
-
-                            <span class="txt24">(+569) 345 6889</span>
-                            o envianos un correo 
-                        </p>
-                    </div>
-
-                    <div class="size24 w-full-md p-t-40">
-                        <h4 class="txt5 m-b-18">
-                            Reservar para eventos
-                        </h4>
-
-                        <p class="size26">
-                            llamanos
-                            <span class="txt24">(+569) 345 6889</span>
-                            , para reservar
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
+				<div class="col-lg-6 p-b-30 p-t-18">
+					<div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto">
+					
+						<img src="usuarios/images/uwu.jpg" alt="IMG-OUR">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+        
+        
+        
 
 
         <!-- Footer -->

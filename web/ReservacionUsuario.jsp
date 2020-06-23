@@ -58,7 +58,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="#">
-                                <img src="usuarios/images/icons/logosigloxx.png" alt="" width="500" height="100" >
+                                <img src="usuarios/images/icons/logosigloxx.png" alt="" width="70" height="70" >
                             </a>
                         </div>
 
@@ -91,14 +91,14 @@
                                     </li>
 
                                     <li>
-                                                            <%
-                        HttpSession sesion = request.getSession();
-                        String usuario = sesion.getAttribute("elterriblenombre").toString();
-                        String maikol = "prueba";
-                        out.print("<a href='#' >"  + usuario + "</a>");
-                    %>
-                                        
-                                        
+                                        <%
+                                            HttpSession sesion = request.getSession();
+                                            String usuario = sesion.getAttribute("elterriblenombre").toString();
+                                            String maikol = "prueba";
+                                            out.print("<a href='#' >" + usuario + "</a>");
+                                        %>
+
+
                                     </li>
 
                                 </ul>
@@ -129,11 +129,10 @@
                 <li class="t-center m-b-13">
 
                     <%
-                     
-                        out.print("<a href='#' class='txt19'>"  + usuario + "</a>");
+                        out.print("<a href='#' class='txt19'>" + usuario + "</a>");
                     %>
 
-       
+
                 </li>
 
                 <li class="t-center m-b-13">
@@ -157,19 +156,19 @@
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Contacto</a>
                 </li>
-                
+
                 <li class="t-center m-b-33">
-                                                        <%
-                                        out.print(" <a class='txt19' name='cerrar' href='LoginPagina.jsp?cerrar=true'><i class='fa fa-power-off m-r-5 m-l-5'></i>Cerrar sesion</a>");
+                    <%
+                        out.print(" <a class='txt19' name='cerrar' href='LoginPagina.jsp?cerrar=true'><i class='fa fa-power-off m-r-5 m-l-5'></i>Cerrar sesion</a>");
 
-                                        if (request.getParameter("cerrar") != null) {
-                                            request.getSession().invalidate();
-                                            response.sendRedirect("LoginPagina.jsp");
-                                            return;
+                        if (request.getParameter("cerrar") != null) {
+                            request.getSession().invalidate();
+                            response.sendRedirect("LoginPagina.jsp");
+                            return;
 
-                                        }
+                        }
 
-                                    %>
+                    %>
 
                 </li>
 
@@ -197,19 +196,21 @@
 
 
         <!-- Reservation -->
-        <section class="section-reservation bg1-pattern p-t-100 p-b-113">
+        <section class="section-booking bg1-pattern p-t-100 p-b-110">
+            <div class="t-center">
+                <span class="tit2 t-center">
+                    Reservacion
+                </span>
+
+                <h3 class="tit3 t-center m-b-35 m-t-2">
+                    Reserva una mesa
+                </h3>
+            </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 p-b-30">
-                        <div class="t-center">
-                            <span class="tit2 t-center">
-                                Reservación
-                            </span>
+                    <div class="col-lg-6 p-b-30">
 
-                            <h3 class="tit3 t-center m-b-35 m-t-2">
-                                Reserva una mesa
-                            </h3>
-                        </div>
+
 
                         <form action="servReservita" method="post" class="wrap-form-reservation size22 m-l-r-auto">
                             <div class="row">
@@ -284,24 +285,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Name -->
-                                    <span class="txt9">
-                                        Id del usuario
-                                    </span>
 
-                                    <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                      
-                                        
-                                                                                                    <%
-                        
-                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
-                        String maikoll = "prueba";
-                        out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='"+ usuarioo +"'>");
-                
-%>
-                                    </div>
-                                </div>
 
 
                                 <div class="col-md-4">
@@ -338,12 +322,26 @@
                                         <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" min="10000000" max="999999999"  placeholder="Telefono" required>
                                     </div>
                                 </div>
+                                
+                                
 
                                 <div class="col-md-4">
                                     <!-- Email -->
 
                                     <div >
                                         <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtEstado" placeholder="Numero" value ="1">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Name -->
+                                    <div >
+
+                                        <%                                                                                                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
+                                            String maikoll = "prueba";
+                                            out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='" + usuarioo + "'>");
+
+                                        %>
                                     </div>
                                 </div>
 
@@ -358,37 +356,14 @@
                             </div>
                         </form>
                     </div>
-                </div>
 
-                <div class="info-reservation flex-w p-t-80">
-                    <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
-                        <h4 class="txt5 m-b-18">
-                            Reserve por telefono
-                        </h4>
 
-                        <p class="size25">
-                            Llamanos para reservar 
-                            <span class="txt25"> a este numero</span>
+                    <div class="col-lg-6 p-b-30 p-t-18">
+                        <div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto">
 
-                            <span class="txt25"> </span>
-
-                            <span class="txt24">(+569) 345 6889</span>
-                            o envianos un correo 
-                        </p>
+                            <img src="usuarios/images/uwu.jpg" alt="IMG-OUR">
+                        </div>
                     </div>
-
-                    <div class="size24 w-full-md p-t-40">
-                        <h4 class="txt5 m-b-18">
-                            Reservar para eventos
-                        </h4>
-
-                        <p class="size26">
-                            llamanos
-                            <span class="txt24">(+569) 345 6889</span>
-                            , para reservar
-                        </p>
-                    </div>
-
                 </div>
             </div>
         </section>
