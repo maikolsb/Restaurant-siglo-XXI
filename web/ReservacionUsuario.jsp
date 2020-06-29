@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session = "true"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -71,8 +72,9 @@
                                     </li>
 
                                     <li>
-                                        <a href="#">Menu</a>
+                                        <a href="MenuRestaurant.jsp">Menu</a>
                                     </li>
+                                    
 
                                     <li>
                                         <a href="#">Reservacion</a>
@@ -140,7 +142,7 @@
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Menu</a>
+                    <a href="MenuRestaurant.jsp" class="txt19">Menu</a>
                 </li>
 
                 <li class="t-center m-b-13">
@@ -337,7 +339,8 @@
                                     <!-- Name -->
                                     <div >
 
-                                        <%                                                                                                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
+                                        <% 
+                                            String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
                                             String maikoll = "prueba";
                                             out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='" + usuarioo + "'>");
 

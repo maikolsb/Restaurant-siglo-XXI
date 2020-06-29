@@ -3,7 +3,7 @@
     Created on : 19-05-2020, 19:24:19
     Author     : maikolsb
 --%>
-
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,12 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="usuarios/css/util.css">
         <link rel="stylesheet" type="text/css" href="usuarios/css/main.css">
-        <!--===============================================================================================-->
+
+
+        <link href="paginaAdmin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+        <!--=====================================================================
+        ==========================-->
 
     </head>
 
@@ -85,7 +90,7 @@
                                     <li>
                                         <a href="#">Nosotros</a>
                                     </li>
-                                    
+
                                     <li>
                                         <a href="#">Contacto</a>
                                     </li>
@@ -134,12 +139,12 @@
                     <a href="#" class="txt19">Nosotros</a>
                 </li>
 
-                
+
 
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Contacto</a>
                 </li>
-                
+
                 <li class="t-center m-b-33">
                     <a href="#" class="txt19">Inicia sesion</a>
                 </li>
@@ -161,549 +166,391 @@
         <!-- Title Page -->
         <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
             <h2 class="tit6 t-center">
-                Reservación
+                Lista de reservaciones
                 <img src="usuarios/images/icons/logosiglo.png" alt="" width="30%" >
             </h2>
         </section>
 
 
-        <!-- Reservation -->
-        <section class="section-reservation bg1-pattern p-t-100 p-b-113">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 p-b-30">
-                        <div class="t-center">
-                            <span class="tit2 t-center">
-                                Reservación
-                            </span>
-
-                            <h3 class="tit3 t-center m-b-35 m-t-2">
-                                Reserva una mesa
-                            </h3>
-                        </div>
-
-                        <form action="servReservita" method="post" class="wrap-form-reservation size22 m-l-r-auto">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Date -->
-                                    <span class="txt9">
-                                        Fecha
-                                    </span>
-
-                                    <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="txtFecha" required>
-                                        <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Time -->
-                                    <span class="txt9">
-                                        Hora
-                                    </span>
-
-                                    <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtHora" required>
-                                            <option value="9:00">9:00</option>
-                                            <option>9:30</option>
-                                            <option>10:00</option>
-                                            <option>10:30</option>
-                                            <option>11:00</option>
-                                            <option>11:30</option>
-                                            <option>12:00</option>
-                                            <option>12:30</option>
-                                            <option>13:00</option>
-                                            <option>13:30</option>
-                                            <option>14:00</option>
-                                            <option>14:30</option>
-                                            <option>15:00</option>
-                                            <option>15:30</option>
-                                            <option>16:00</option>
-                                            <option>16:30</option>
-                                            <option>17:00</option>
-                                            <option>17:30</option>
-                                            <option>18:00</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- People -->
-                                    <span class="txt9">
-                                        Cantidad de personas
-                                    </span>
-
-                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtCantidad" required>
-                                            <option value="1" >1 Persona</option>
-                                            <option value="2">2 Personas</option>
-                                            <option value="3">3 Personas</option>
-                                            <option value="4">4 Personas</option>
-                                            <option value="5">5 Personas</option>
-                                            <option value="6">6 Personas</option>
-                                            <option value="7">7 Personas</option>
-                                            <option value="8">8 Personas</option>
-                                            <option value="9">9 Personas</option>
-                                            <option value="10">10 Personas</option>
-                                            <option value="11">11 Personas</option>
-                                            <option value="12">12 Personas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Name -->
-                                    <span class="txt9">
-                                        Id del usuario
-                                    </span>
-
-                                    <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                      
-                                        
-                                                                                                    <%
-                        
-                        String usuarioo = sesion.getAttribute("elterriblenombre2").toString();
-                        String maikoll = "prueba";
-                        out.print("<input class='bo-rad-10 sizefull txt10 p-l-20' type='hidden' name='txtNombre' placeholder='Id_Usiario' value='"+ usuarioo +"'>");
-                
-%>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-4">
-                                    <!-- People -->
-                                    <span class="txt9">
-                                        Numero de mesa
-                                    </span>
-
-                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtMesa" required>
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Email -->
-                                    <span class="txt9">
-                                        Telefono
-                                    </span>
-                                    <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" min="10000000" max="999999999"  placeholder="Telefono" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Email -->
-
-                                    <div >
-                                        <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtEstado" placeholder="Numero" value ="1">
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                            <div class="wrap-btn-booking flex-c-m m-t-6">
-                                <!-- Button3 -->
-                                <button type="submit" id="BtnAgregar" name="BtnAgregar" class="btn3 flex-c-m size13 txt11 trans-0-4">Reservar una mesa</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="info-reservation flex-w p-t-80">
-                    <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
-                        <h4 class="txt5 m-b-18">
-                            Reserve por telefono
-                        </h4>
-
-                        <p class="size25">
-                            Llamanos para reservar 
-                            <span class="txt25"> a este numero</span>
-
-                            <span class="txt25"> </span>
-
-                            <span class="txt24">(+569) 345 6889</span>
-                            o envianos un correo 
-                        </p>
-                    </div>
-
-                    <div class="size24 w-full-md p-t-40">
-                        <h4 class="txt5 m-b-18">
-                            Reservar para eventos
-                        </h4>
-
-                        <p class="size26">
-                            llamanos
-                            <span class="txt24">(+569) 345 6889</span>
-                            , para reservar
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        
-        
-        
-        
-        
-        	<section class="section-booking bg1-pattern p-t-100 p-b-110">
-	<div class="t-center">
-						<span class="tit2 t-center">
-							Reservacion
-						</span>
-
-						<h3 class="tit3 t-center m-b-35 m-t-2">
-							Reserva una mesa
-						</h3>
-					</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 p-b-30">
-					
-
-
-                        <form action="servReservita" method="post" class="wrap-form-reservation size22 m-l-r-auto">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Date -->
-                                    <span class="txt9">
-                                        Fecha
-                                    </span>
-
-                                    <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="txtFecha" required>
-                                        <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Time -->
-                                    <span class="txt9">
-                                        Hora
-                                    </span>
-
-                                    <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtHora" required>
-                                            <option value="9:00">9:00</option>
-                                            <option>9:30</option>
-                                            <option>10:00</option>
-                                            <option>10:30</option>
-                                            <option>11:00</option>
-                                            <option>11:30</option>
-                                            <option>12:00</option>
-                                            <option>12:30</option>
-                                            <option>13:00</option>
-                                            <option>13:30</option>
-                                            <option>14:00</option>
-                                            <option>14:30</option>
-                                            <option>15:00</option>
-                                            <option>15:30</option>
-                                            <option>16:00</option>
-                                            <option>16:30</option>
-                                            <option>17:00</option>
-                                            <option>17:30</option>
-                                            <option>18:00</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- People -->
-                                    <span class="txt9">
-                                        Cantidad de personas
-                                    </span>
-
-                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtCantidad" required>
-                                            <option value="1" >1 Persona</option>
-                                            <option value="2">2 Personas</option>
-                                            <option value="3">3 Personas</option>
-                                            <option value="4">4 Personas</option>
-                                            <option value="5">5 Personas</option>
-                                            <option value="6">6 Personas</option>
-                                            <option value="7">7 Personas</option>
-                                            <option value="8">8 Personas</option>
-                                            <option value="9">9 Personas</option>
-                                            <option value="10">10 Personas</option>
-                                            <option value="11">11 Personas</option>
-                                            <option value="12">12 Personas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Name -->
-                                    <span class="txt9">
-                                        Id del usuario
-                                    </span>
-
-                                    <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="txtNombre" placeholder="Id_Usiario" required>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-4">
-                                    <!-- People -->
-                                    <span class="txt9">
-                                        Numero de mesa
-                                    </span>
-
-                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtMesa" required>
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Email -->
-                                    <span class="txt9">
-                                        Telefono
-                                    </span>
-                                    <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <input type="number" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtTelefono" placeholder="Telefono" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <!-- Email -->
-                                    
-                                    <div >
-                                        <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtEstado" placeholder="Numero" value ="1">
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                            <div class="wrap-btn-booking flex-c-m m-t-6">
-                                <!-- Button3 -->
-                                <button type="submit" id="BtnAgregar" name="BtnAgregar" class="btn3 flex-c-m size13 txt11 trans-0-4">Reservar una mesa</button>
-
-                            </div>
-                        </form>
-				</div>
-				
-
-				<div class="col-lg-6 p-b-30 p-t-18">
-					<div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-					
-						<img src="usuarios/images/uwu.jpg" alt="IMG-OUR">
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-        
-        
-        
-
-
-        <!-- Footer -->
-        <footer class="bg1">
-            <div class="container p-t-40 p-b-70">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Contactanos
-                        </h4>
-
-                        <ul class="m-b-70">
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                Calle falsa #123
-                            </li>
-
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                (+569) 96716 6879
-                            </li>
-
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                                sigloXXI@gmail.com
-                            </li>
-                        </ul>
-
-                        <!-- - -->
-                        <h4 class="txt13 m-b-32">
-                            Horario de atención
-                        </h4>
-
-                        <ul>
-                            <li class="txt14">
-                                09:30 AM – 11:00 PM
-                            </li>
-
-                            <li class="txt14">
-                                Todos los dias
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Ultimos Twitter
-                        </h4>
-
-                        <div class="m-b-25">
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="#" class="txt15">
-                                @sigloXXI
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Hola buenos dias
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="#" class="txt15">
-                                @sigloXXI
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Buenas tardes
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-38">
-                            Galeria
-                        </h4>
-
-                        <!-- Gallery footer -->
-                        <div class="wrap-gallery-footer flex-w">
-                            <a class="item-gallery-footer wrap-pic-w" href="usuarios/images/icons/logosigloxx.png" data-lightbox="gallery-footer">
-                                <img src="usuarios/images/icons/logosigloxx.png" alt="GALLERY">
-                            </a>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="end-footer bg2">
-                <div class="container">
-                    <div class="flex-sb-m flex-w p-t-22 p-b-22">
-                        <div class="p-t-5 p-b-5">
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="txt17 p-r-20 p-t-5 p-b-5">
-                            Todos los derechos reservados     <i class="fa fa-heart"></i> por <a href="#" target="_blank"> RESTAURANT SIGLO XXI</a>
+        </br>
+        </br>
+
+    <center>
+        <span class="tit2 t-center" >
+            Reservaciones Restaurant Siglo XXI
+        </span>
+    </center>
+    </br>
+    </br>
+
+
+
+
+
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+
+
+
+
+    <%            //CONECTANOD A LA BASE DE DATOS:
+        Connection con;
+        String url = "jdbc:oracle:thin:@localhost:1521:XE";
+        String Driver = "oracle.jdbc.driver.OracleDriver";
+        String user = "jimin";
+        String clave = "jimin";
+        Class.forName(Driver);
+        con = DriverManager.getConnection(url, user, clave);
+        PreparedStatement ps;
+        //Emnpezamos Listando los Datos de la Tabla Usuario
+
+        Statement smt;
+        ResultSet rs;
+        smt = con.createStatement();
+
+        rs = smt.executeQuery("select * from reserva ");
+
+        //Creamo la Tabla:     
+    %>
+
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
+                            <table  class="table table-striped table-bordered" id="tablaDatos">
+                                <thead>
+                                    <tr> 
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Hora</th>
+                                        <!-- <th class="text-center">Cantidad</th> -->
+                                        <th class="text-center">id_Usuario</th>
+                                        <th class="text-center">Telefono</th>
+                                        <th class="text-center">Mesa_id</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodys">
+                                    <%                    while (rs.next()) {
+                                    %>
+                                    <tr>
+                                        <td class="text-center"><%= rs.getString("id")%></td>
+                                        <td class="text-center"><%= rs.getString("fecha")%></td>
+                                        <td class="text-center"><%= rs.getString("hora")%></td>
+                                        <!--
+                                        <%
+                                            if (rs.getInt("cantidad") == 1) {
+                                        %>
+                                        <td class="text-center"><%= rs.getString("cantidad")%> persona</td>
+                                        <%}%> <%
+                                            if (rs.getInt("cantidad") >= 2) {
+                                        %>
+                                        <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
+                                        <%}%> 
+                                        -->
+
+                                        <td class="text-center"><%= rs.getString("usuario_id")%></td>
+                                        <td class="text-center"><%= rs.getString("telefono")%></td>
+                                        <td class="text-center"><%= rs.getString("mesa_id")%></td>
+                                        <td class="text-center"><%= rs.getString("estado")%></td>  
+
+                                        <td>
+                                            <a href="Eliminar/EliminarReserva.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger">Cancelar Reserva</a>
+
+
+                                        </td>
+
+
+
+                                    </tr>
+                                    <%}%>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Hora</th>
+                                        <!-- <th class="text-center">Cantidad</th> -->
+                                        <th class="text-center">id_Usuario</th>
+                                        <th class="text-center">Telefono</th>
+                                        <th class="text-center">Mesa_id</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </div>
 
 
-        <!-- Back to top -->
-        <div class="btn-back-to-top bg0-hov" id="myBtn">
-            <span class="symbol-btn-back-to-top">
-                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-            </span>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        Todos los derechos reservados a <a href="#">Restaurant siglo XXI</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+</div>
+
+
+
+
+<!-- Reservation -->
+<section>
+
+    <div class="info-reservation flex-w p-t-80">
+        <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
+            <h4 class="txt5 m-b-18">
+                Reserve por telefono
+            </h4>
+
+            <p class="size25">
+                Llamanos para reservar 
+                <span class="txt25"> a este numero</span>
+
+                <span class="txt25"> </span>
+
+                <span class="txt24">(+569) 345 6889</span>
+                o envianos un correo 
+            </p>
         </div>
 
-        <!-- Container Selection1 -->
-        <div id="dropDownSelect1"></div>
+        <div class="size24 w-full-md p-t-40">
+            <h4 class="txt5 m-b-18">
+                Reservar para eventos
+            </h4>
+
+            <p class="size26">
+                llamanos
+                <span class="txt24">(+569) 345 6889</span>
+                , para reservar
+            </p>
+        </div>
+
+    </div>
+
+</section>
 
 
 
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
-        <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
-        <script type="text/javascript">
-            $('.parallax100').parallax100();
-        </script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="usuarios/js/main.js"></script>
 
-    </body>
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg1">
+    <div class="container p-t-40 p-b-70">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 p-t-50">
+                <!-- - -->
+                <h4 class="txt13 m-b-33">
+                    Contactanos
+                </h4>
+
+                <ul class="m-b-70">
+                    <li class="txt14 m-b-14">
+                        <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                        Calle falsa #123
+                    </li>
+
+                    <li class="txt14 m-b-14">
+                        <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                        (+569) 96716 6879
+                    </li>
+
+                    <li class="txt14 m-b-14">
+                        <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+                        sigloXXI@gmail.com
+                    </li>
+                </ul>
+
+                <!-- - -->
+                <h4 class="txt13 m-b-32">
+                    Horario de atención
+                </h4>
+
+                <ul>
+                    <li class="txt14">
+                        09:30 AM – 11:00 PM
+                    </li>
+
+                    <li class="txt14">
+                        Todos los dias
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6 col-md-4 p-t-50">
+                <!-- - -->
+                <h4 class="txt13 m-b-33">
+                    Ultimos Twitter
+                </h4>
+
+                <div class="m-b-25">
+                    <span class="fs-13 color2 m-r-5">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </span>
+                    <a href="#" class="txt15">
+                        @sigloXXI
+                    </a>
+
+                    <p class="txt14 m-b-18">
+                        Hola buenos dias
+                        <a href="#" class="txt15">
+
+                        </a>
+                    </p>
+
+                    <span class="txt16">
+                        05 Jun 2019
+                    </span>
+                </div>
+
+                <div>
+                    <span class="fs-13 color2 m-r-5">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </span>
+                    <a href="#" class="txt15">
+                        @sigloXXI
+                    </a>
+
+                    <p class="txt14 m-b-18">
+                        Buenas tardes
+                        <a href="#" class="txt15">
+
+                        </a>
+                    </p>
+
+                    <span class="txt16">
+                        05 Jun 2019
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 p-t-50">
+                <!-- - -->
+                <h4 class="txt13 m-b-38">
+                    Galeria
+                </h4>
+
+                <!-- Gallery footer -->
+                <div class="wrap-gallery-footer flex-w">
+                    <a class="item-gallery-footer wrap-pic-w" href="usuarios/images/icons/logosigloxx.png" data-lightbox="gallery-footer">
+                        <img src="usuarios/images/icons/logosigloxx.png" alt="GALLERY">
+                    </a>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="end-footer bg2">
+        <div class="container">
+            <div class="flex-sb-m flex-w p-t-22 p-b-22">
+                <div class="p-t-5 p-b-5">
+                    <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+                    <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+                    <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="txt17 p-r-20 p-t-5 p-b-5">
+                    Todos los derechos reservados     <i class="fa fa-heart"></i> por <a href="#" target="_blank"> RESTAURANT SIGLO XXI</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Back to top -->
+<div class="btn-back-to-top bg0-hov" id="myBtn">
+    <span class="symbol-btn-back-to-top">
+        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+    </span>
+</div>
+
+<!-- Container Selection1 -->
+<div id="dropDownSelect1"></div>
+
+
+
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
+<script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
+<script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
+<script type="text/javascript">
+    $('.parallax100').parallax100();
+</script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+<script src="usuarios/js/main.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tablaDatos').DataTable(
+                {
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    },
+                }
+        );
+    });</script>
+</body>
 </html>

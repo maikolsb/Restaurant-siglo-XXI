@@ -41,7 +41,7 @@
             
             if(request.getParameter("cerrar")!=null){
                 request.getSession().invalidate();
-                response.sendRedirect("Login.jsp");
+                response.sendRedirect("LoginPagina.jsp");
                 return;
             }
         %>

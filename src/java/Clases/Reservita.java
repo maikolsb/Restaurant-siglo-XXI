@@ -58,5 +58,41 @@ public class Reservita extends Conexion {
 
         return false;
     }
+      
+      
+      public boolean Actualizar( int estado ,int id) {
+        PreparedStatement pst = null;
+
+        try {
+            String consulta = "UPDATE reserva SET  estado=?  WHERE id= ? ";
+            pst = getConnection().prepareStatement(consulta);
+            pst.setInt(1, estado);
+            pst.setInt(2, id);
+          
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+            System.err.println("ERROR: " + ex);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+
+        }
+
+        return false;
+    }
+
+
+      
     
 }

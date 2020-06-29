@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author maikolsb
@@ -38,15 +37,13 @@ public class servReservita extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        
+
 //                private String fecha;
 //    private String hora;
 //    private String cantidad;
 //    private String nombre;
 //    private String correo;
 //    private String mesa;
-
         String fecha = request.getParameter("txtFecha");
         String hora = request.getParameter("txtHora");
         String cantidad = request.getParameter("txtCantidad");
@@ -54,18 +51,38 @@ public class servReservita extends HttpServlet {
         String telefono = request.getParameter("txtTelefono");
         String mesa_id = request.getParameter("txtMesa");
         String estado = request.getParameter("txtEstado");
+        
+        String id= request.getParameter("id");
+        
+        String idReserva= request.getParameter("id");
+        
+        if (request.getParameter("BtnReserva") != null) {
+       response.sendRedirect("CancelarReserva.jsp?id="+idReserva);
+      }
 
         Reservita re = new Reservita();
 
-        if (re.registrar(fecha,hora,cantidad,Integer.parseInt(usuario_id),Integer.parseInt(telefono),Integer.parseInt(mesa_id),Integer.parseInt(estado))) {
+        if (re.registrar(fecha, hora, cantidad, Integer.parseInt(usuario_id), Integer.parseInt(telefono), Integer.parseInt(mesa_id), Integer.parseInt(estado))) {
             response.sendRedirect("menu.jsp");
         } else {
             response.sendRedirect("error.jsp");
         }
 
+        if (request.getParameter("BtnActualizar") != null) {
+            if (re.Actualizar(Integer.parseInt(estado),Integer.parseInt(id))) {
+                out.println("<script>alert('cliente ACTUALIZADO')</script>");
+                response.sendRedirect("AdminUsuariosEditar.jsp");
+            } else {
+
+                out.println("<script>alert('cliente NO ACTUALIZADO')</script>");
+                response.sendRedirect("error.jsp");
+            }
+
+        }
+
     }
 
-     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
