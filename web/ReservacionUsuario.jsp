@@ -3,7 +3,7 @@
     Created on : 21-06-2020, 0:19:51
     Author     : maikolsb
 --%>
-
+<%@page import="java.sql.*"%>
 <%@page import="Ent.Mesa"%>
 <%@page import="Dao.DaoMesa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -365,6 +365,107 @@
                 </div>
             </div>
         </section>
+                                    
+                                    
+                                    
+                      <%            //CONECTANOD A LA BASE DE DATOS:
+            Connection con;
+        con = new Controlador.Conexion().getConnection();
+        PreparedStatement ps;
+        //Emnpezamos Listando los Datos de la Tabla Usuario
+
+        Statement smt;
+        ResultSet rs;
+        smt = con.createStatement();
+
+        rs = smt.executeQuery("select * from reserva ");
+
+        //Creamo la Tabla:     
+    %>                  
+                                    
+                                    
+                                    
+                                    
+                                        <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
+                            <table  class="table table-striped table-bordered" id="tablaDatos">
+                                <thead>
+                                    <tr> 
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Hora</th>
+                                        <!-- <th class="text-center">Cantidad</th> -->
+                                        <th class="text-center">id_Usuario</th>
+                                        <th class="text-center">Telefono</th>
+                                        <th class="text-center">Mesa_id</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodys">
+                                    <%                    while (rs.next()) {
+                                                  
+                                    %>
+                                    <tr>
+                                        <td class="text-center"><%= rs.getString("id")%></td>
+                                        <td class="text-center"><%= rs.getString("fecha")%></td>
+                                        <td class="text-center"><%= rs.getString("hora")%></td>
+                                        <!--
+                                        <%
+                                            if (rs.getInt("cantidad") == 1) {
+                                        %>
+                                        <td class="text-center"><%= rs.getString("cantidad")%> persona</td>
+                                        <%}%> <%
+                                            if (rs.getInt("cantidad") >= 2) {
+                                        %>
+                                        <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
+                                        <%}%> 
+                                        -->
+
+                                        <td class="text-center"><%= rs.getString("usuario_id")%></td>
+                                        <td class="text-center"><%= rs.getString("telefono")%></td>
+                                        <td class="text-center"><%= rs.getString("mesa_id")%></td>
+                                        <td class="text-center"><%= rs.getString("estado")%></td>  
+
+                                        <td>
+                                            <a href="Eliminar/EliminarReserva.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger">Cancelar Reserva</a>
+
+
+                                        </td>
+
+
+
+                                    </tr>
+                                    <%}%>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Hora</th>
+                                        <!-- <th class="text-center">Cantidad</th> -->
+                                        <th class="text-center">id_Usuario</th>
+                                        <th class="text-center">Telefono</th>
+                                        <th class="text-center">Mesa_id</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                    
 
 
         <!-- Footer -->

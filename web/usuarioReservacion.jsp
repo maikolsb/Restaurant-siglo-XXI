@@ -245,6 +245,7 @@
                                 </thead>
                                 <tbody id="tbodys">
                                     <%                    while (rs.next()) {
+                                                     if(rs.getString("usuario_id").equals(session.getAttribute("elterriblenombre2"))){
                                     %>
                                     <tr>
                                         <td class="text-center"><%= rs.getString("id")%></td>
@@ -276,7 +277,7 @@
 
 
                                     </tr>
-                                    <%}%>
+                                    <%}}%>
                                 </tbody>
                                 <tfoot>
                                     <tr>
