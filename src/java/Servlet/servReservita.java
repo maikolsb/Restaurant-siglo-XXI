@@ -60,25 +60,26 @@ public class servReservita extends HttpServlet {
        response.sendRedirect("CancelarReserva.jsp?id="+idReserva);
       }
 
-        Reservita re = new Reservita();
+        try {
+            int uIdInt = Integer.parseInt(usuario_id);
+            int telefonoInt = Integer.parseInt(telefono);
+            int mesaIdInt = Integer.parseInt(mesa_id);
+            int estadoInt = Integer.parseInt(estado);
 
-        if (re.registrar(fecha, hora, cantidad, Integer.parseInt(usuario_id), Integer.parseInt(telefono), Integer.parseInt(mesa_id), Integer.parseInt(estado))) {
-            response.sendRedirect("menu.jsp");
-        } else {
+
+            Reservita re = new Reservita();
+            if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt)) {
+                response.sendRedirect("menu.jsp");
+            } else {
+                response.sendRedirect("error.jsp");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
             response.sendRedirect("error.jsp");
         }
 
-        if (request.getParameter("BtnActualizar") != null) {
-            if (re.Actualizar(Integer.parseInt(estado),Integer.parseInt(id))) {
-                out.println("<script>alert('cliente ACTUALIZADO')</script>");
-                response.sendRedirect("AdminUsuariosEditar.jsp");
-            } else {
-
-                out.println("<script>alert('cliente NO ACTUALIZADO')</script>");
-                response.sendRedirect("error.jsp");
-            }
-
-        }
+  
 
     }
 
