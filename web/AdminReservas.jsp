@@ -64,7 +64,7 @@
 
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                                                <img  width="50" height="50" src="paginaAdmin/assets/images/restaurant.png" alt="homepage" class="light-logo" />
+                                <img  width="50" height="50" src="paginaAdmin/assets/images/restaurant.png" alt="homepage" class="light-logo" />
 
                             </b>
                             <!--End Logo icon -->
@@ -103,11 +103,11 @@
                             <!-- ============================================================== -->
                             <!-- create new -->
                             <!-- ============================================================== -->
-                       
+
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
-                          
+
                         </ul>
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
@@ -116,10 +116,10 @@
                             <!-- ============================================================== -->
                             <!-- Comment -->
                             <!-- ============================================================== -->
-                        
+
                             <!-- ============================================================== -->
                             <!-- End Comment -->
-                         
+
                             <!-- ============================================================== -->
                             <!-- End Messages -->
                             <!-- ============================================================== -->
@@ -221,21 +221,16 @@
 
 
 
+
                 <%            //CONECTANOD A LA BASE DE DATOS:
                     Connection con;
-                    String url = "jdbc:oracle:thin:@localhost:1521:XE";
-                    String Driver = "oracle.jdbc.driver.OracleDriver";
-                    String user = "jimin";
-                    String clave = "jimin";
-                    Class.forName(Driver);
-                    con = DriverManager.getConnection(url, user, clave);
+                    con = new Controlador.Conexion().getConnection();
                     PreparedStatement ps;
                     //Emnpezamos Listando los Datos de la Tabla Usuario
 
                     Statement smt;
                     ResultSet rs;
                     smt = con.createStatement();
-
                     rs = smt.executeQuery("select * from reserva");
 
                     //Creamo la Tabla:     
@@ -261,7 +256,7 @@
                                                     <th class="text-center">Telefono</th>
                                                     <th class="text-center">Mesa_id</th>
                                                     <th class="text-center">Estado</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody id="tbodys">
@@ -271,22 +266,22 @@
                                                     <td class="text-center"><%= rs.getString("id")%></td>
                                                     <td class="text-center"><%= rs.getString("fecha")%></td>
                                                     <td class="text-center"><%= rs.getString("hora")%></td>
-                                                     <%         
-                                                         if (rs.getInt("cantidad")==1) {
-                                                %>
-                                                  <td class="text-center"><%= rs.getString("cantidad")%> persona</td>
-                                                <%}%> <%         
-                                                         if (rs.getInt("cantidad")>=2) {
-                                                %>
-                                                <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
-                                                <%}%> 
-                                                    
-                                                 
+                                                    <%
+                                                        if (rs.getInt("cantidad") == 1) {
+                                                    %>
+                                                    <td class="text-center"><%= rs.getString("cantidad")%> persona</td>
+                                                    <%}%> <%
+                                                        if (rs.getInt("cantidad") >= 2) {
+                                                    %>
+                                                    <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
+                                                    <%}%> 
+
+
                                                     <td class="text-center"><%= rs.getString("usuario_id")%></td>
                                                     <td class="text-center"><%= rs.getString("telefono")%></td>
                                                     <td class="text-center"><%= rs.getString("mesa_id")%></td>
                                                     <td class="text-center"><%= rs.getString("estado")%></td>                                                   
-          
+
 
                                                 </tr>
                                                 <%}%>
@@ -301,7 +296,7 @@
                                                     <th class="text-center">Telefono</th>
                                                     <th class="text-center">Mesa_id</th>
                                                     <th class="text-center">Estado</th>
-                                                    
+
                                                 </tr>
                                             </tfoot>
                                         </table>

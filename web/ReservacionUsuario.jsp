@@ -366,6 +366,17 @@
             </div>
         </section>
                                     
+                                            </br>
+        </br>
+
+    <center>
+        <span class="tit2 t-center" >
+            Sus reservaciones 
+        </span>
+    </center>
+    </br>
+    </br>
+                                    
                                     
                                     
                       <%            //CONECTANOD A LA BASE DE DATOS:
@@ -396,13 +407,13 @@
                             <table  class="table table-striped table-bordered" id="tablaDatos">
                                 <thead>
                                     <tr> 
-                                        <th class="text-center">Id</th>
+                                       
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Hora</th>
                                         <!-- <th class="text-center">Cantidad</th> -->
-                                        <th class="text-center">id_Usuario</th>
+                                        <th class="text-center">Usuario</th>
                                         <th class="text-center">Telefono</th>
-                                        <th class="text-center">Mesa_id</th>
+                                        <th class="text-center">Mesa</th>
                                         <th class="text-center">Estado</th>
                                         <th class="text-center">Acciones</th>
 
@@ -410,10 +421,11 @@
                                 </thead>
                                 <tbody id="tbodys">
                                     <%                    while (rs.next()) {
+                                        if(rs.getString("usuario_id").equals(usuarioid)){
                                                   
                                     %>
                                     <tr>
-                                        <td class="text-center"><%= rs.getString("id")%></td>
+                                        
                                         <td class="text-center"><%= rs.getString("fecha")%></td>
                                         <td class="text-center"><%= rs.getString("hora")%></td>
                                         <!--
@@ -427,11 +439,21 @@
                                         <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
                                         <%}%> 
                                         -->
+                                        
+                             
 
                                         <td class="text-center"><%= rs.getString("usuario_id")%></td>
                                         <td class="text-center"><%= rs.getString("telefono")%></td>
                                         <td class="text-center"><%= rs.getString("mesa_id")%></td>
-                                        <td class="text-center"><%= rs.getString("estado")%></td>  
+                                                                                 <%
+                                            if (rs.getInt("estado") == 1) {
+                                        %>
+                                        <td class="text-center">Reservado</td>
+                                        <%}%> <%
+                                            if (rs.getInt("estado") >= 2) {
+                                        %>
+                                        <td class="text-center"><%= rs.getString("estado")%>Cancelado</td>
+                                        <%}%> 
 
                                         <td>
                                             <a href="Eliminar/EliminarReserva.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger">Cancelar Reserva</a>
@@ -442,22 +464,9 @@
 
 
                                     </tr>
-                                    <%}%>
+                                    <%}}%>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-center">Id</th>
-                                        <th class="text-center">Fecha</th>
-                                        <th class="text-center">Hora</th>
-                                        <!-- <th class="text-center">Cantidad</th> -->
-                                        <th class="text-center">id_Usuario</th>
-                                        <th class="text-center">Telefono</th>
-                                        <th class="text-center">Mesa_id</th>
-                                        <th class="text-center">Estado</th>
-                                        <th class="text-center">Acciones</th>
-
-                                    </tr>
-                                </tfoot>
+                            
                             </table>
                         </div>
                     </div>

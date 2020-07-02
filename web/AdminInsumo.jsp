@@ -72,7 +72,7 @@
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                               <img src="paginaAdmin/assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                                <img src="paginaAdmin/assets/images/logo-text.png" alt="homepage" class="light-logo" />
 
                             </span>
                             <!-- Logo icon -->
@@ -283,8 +283,8 @@
                                                                 <option >Ajicolor</option>
                                                                 <option >Merken</option>
                                                                 <option >Pimienta</option>
-                                                               
-                                                           
+
+
                                                             </optgroup>
                                                             <optgroup label="Otros">
                                                                 <option >Sal</option>
@@ -292,7 +292,7 @@
                                                                 <option >Aceite</option>
                                                                 <option >Aceite de oliva</option>
                                                                 <option ></option>
-                                                       
+
                                                             </optgroup>
                                                         </select>
                                                     </div>
@@ -304,7 +304,7 @@
                                                     <input type="text" class="form-control form-control-lg" placeholder="Ingrese cantidad" name="txtStock"  aria-label="txtStock" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                  
+
                                                     <input type="hidden" class="form-control form-control-lg" placeholder="Ingrese estado" name="txtEstado" value="1" aria-label="txtEstado" aria-describedby="basic-addon1" required>
                                                 </div>
 
@@ -336,12 +336,7 @@
 
                 <%            //CONECTANOD A LA BASE DE DATOS:
                     Connection con;
-                    String url = "jdbc:oracle:thin:@localhost:1521:XE";
-                    String Driver = "oracle.jdbc.driver.OracleDriver";
-                    String user = "jimin";
-                    String clave = "jimin";
-                    Class.forName(Driver);
-                    con = DriverManager.getConnection(url, user, clave);
+                    con = new Controlador.Conexion().getConnection();
                     PreparedStatement ps;
                     //Emnpezamos Listando los Datos de la Tabla Usuario
 
@@ -371,7 +366,7 @@
                                                     <th class="text-center">Nombre</th>
                                                     <th class="text-center">Stock</th>
                                                     <th class="text-center">Estado</th>
-                                                    
+
 
                                                 </tr>
                                             </thead>
@@ -382,65 +377,78 @@
 
                                                     <td class="text-center"><%= rs.getString("id")%></td>
                                                     <td class="text-center"><%= rs.getString("nombre")%></td>
+
+
+                                                    <%
+                                                        if (rs.getInt("stock") >= 5) {
+                                                    %>
                                                     <td class="text-center"><%= rs.getString("stock")%></td>
+                                                    <%}%> <%
+                                                        if (rs.getInt("stock") <= 4) {
+                                                    %>
+                                                    <td class="text-center" style="color:#f80000;">Bajo stock quedan <%= rs.getString("stock")%> unidades</td>
+                                                    <%}%> 
+
+
+
                                                     <td class="text-center"><%= rs.getString("estado")%></td>
-                                   
 
 
 
-                                            </tr>
-                                            <%}%>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
 
-                                                <th class="text-center">Id</th>
-                                                <th class="text-center">Nombre</th>
-                                                <th class="text-center">Stock</th>
-                                                <th class="text-center">Estado</th>
-                                            
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
 
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                                    <th class="text-center">Id</th>
+                                                    <th class="text-center">Nombre</th>
+                                                    <th class="text-center">Stock</th>
+                                                    <th class="text-center">Estado</th>
+
+
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <footer class="footer text-center">
+                    Todos los derechos reservados a <a href="#">Restaurant siglo XXI</a>.
+                </footer>
+                <!-- ============================================================== -->
+                <!-- End footer -->
+                <!-- ============================================================== -->
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                Todos los derechos reservados a <a href="#">Restaurant siglo XXI</a>.
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
+            <!-- End Page wrapper  -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
+        <!-- End Wrapper -->
         <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
 
 
 
@@ -455,39 +463,36 @@
 
 
 
-    <script src="paginaAdmin/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="paginaAdmin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="paginaAdmin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="paginaAdmin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="paginaAdmin/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="paginaAdmin/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="paginaAdmin/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="paginaAdmin/dist/js/custom.min.js"></script>
-    <!-- this page js -->
-    <script src="paginaAdmin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="paginaAdmin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="paginaAdmin/assets/extra-libs/DataTables/datatables.min.js"></script>
+        <script src="paginaAdmin/assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="paginaAdmin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="paginaAdmin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="paginaAdmin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="paginaAdmin/assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="paginaAdmin/dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="paginaAdmin/dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script src="paginaAdmin/dist/js/custom.min.js"></script>
+        <!-- this page js -->
+        <script src="paginaAdmin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+        <script src="paginaAdmin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+        <script src="paginaAdmin/assets/extra-libs/DataTables/datatables.min.js"></script>
 
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tablaDatos').DataTable(
-                    {
-                        "language": {
-                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                        },
-                    }
-            );
-        });</script>
-
-
-
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tablaDatos').DataTable(
+                        {
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        }
+                );
+            });</script>
 
 
 
@@ -497,5 +502,8 @@
 
 
 
-</body>
+
+
+
+    </body>
 </html>

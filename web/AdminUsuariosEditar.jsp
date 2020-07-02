@@ -23,24 +23,19 @@
         
         
         
-         <%
-       //CONECTANOD A LA BASE DE DATOS:
-      
-       
-       
-       
-                     Connection con;
-                    String url = "jdbc:oracle:thin:@localhost:1521:XE";
-                    String Driver = "oracle.jdbc.driver.OracleDriver";
-                    String user = "jimin";
-                    String clave = "jimin";
-                    Class.forName(Driver);
-                    con = DriverManager.getConnection(url, user, clave); 
+                <%            //CONECTANOD A LA BASE DE DATOS:
+                    Connection con;
+                    con = new Controlador.Conexion().getConnection();
                     PreparedStatement ps;
+                    //Emnpezamos Listando los Datos de la Tabla Usuario
+
+                    Statement smt;
+                    ResultSet rs;
+                    smt = con.createStatement();
        
        //Emnpezamos Listando los Datos de la Tabla Usuario pero de la fila seleccionada
       
-       ResultSet rs;
+       
        int id=Integer.parseInt(request.getParameter("id"));
        ps=con.prepareStatement("select * from  usuario where id ="+ id);
        rs=ps.executeQuery();

@@ -25,8 +25,9 @@
             int id = Integer.parseInt(request.getParameter("id"));
             ps = con.prepareStatement("delete from reserva where id=" + id);
             ps.executeUpdate();
-            response.sendRedirect("../usuarioReservacion.jsp");
+            response.sendRedirect("../ReservacionUsuario.jsp");
 
         %>
+        
     </body>
 </html>

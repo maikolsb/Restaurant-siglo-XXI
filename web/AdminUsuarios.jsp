@@ -322,12 +322,7 @@
 
                 <%            //CONECTANOD A LA BASE DE DATOS:
                     Connection con;
-                    String url = "jdbc:oracle:thin:@localhost:1521:XE";
-                    String Driver = "oracle.jdbc.driver.OracleDriver";
-                    String user = "jimin";
-                    String clave = "jimin";
-                    Class.forName(Driver);
-                    con = DriverManager.getConnection(url, user, clave);
+                    con = new Controlador.Conexion().getConnection();
                     PreparedStatement ps;
                     //Emnpezamos Listando los Datos de la Tabla Usuario
 
