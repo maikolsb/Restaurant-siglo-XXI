@@ -4,7 +4,9 @@
     Author     : maikolsb
 --%>
 
-
+<%@page import="Clases.Orden"%>
+<%@page import="java.sql.*"%>
+<%@page import="Ent.Receta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session = "true"%>
 <!DOCTYPE html>
@@ -41,6 +43,24 @@
         <link rel="stylesheet" type="text/css" href="usuarios/css/util.css">
         <link rel="stylesheet" type="text/css" href="usuarios/css/main.css">
         <!--===============================================================================================-->
+
+
+        <%
+
+            String mesita = request.getParameter("mesa");
+            String mesasession = (String) session.getAttribute("mesaid");
+            if (mesita == null) {
+                if (mesasession == null) {
+                    session.setAttribute("mesaid", "1");
+                }
+            } else {
+                session.setAttribute("mesaid", mesita);
+                response.sendRedirect("MenuRestaurant.jsp");
+            }
+
+
+        %>
+
 
     </head>
 
@@ -95,8 +115,7 @@
                                     </li>
 
                                     <li>
-                                        <%
-                                            HttpSession sesion = request.getSession();
+                                        <%                                            HttpSession sesion = request.getSession();
                                             String usuario = sesion.getAttribute("elterriblenombre").toString();
                                             String maikol = "prueba";
                                             out.print("<a href='#' >" + usuario + "</a>");
@@ -215,375 +234,145 @@
                     <div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto">
                         <div class="wrap-item-mainmenu p-b-22">
                             <h3 class="tit-mainmenu tit10 p-b-25">
-                                ENSALADAS
+                                Platos
                             </h3>
 
                             <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        Papas mayo
-                                    </a>
 
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $500 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
 
                             <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        lechuga
-                                    </a>
+                            <% for (Receta receta : Dao.DaoReceta.All()) {
+                            %>
+                            <form method="post" action="servMenu">
+                                <div class="item-mainmenu m-b-36">
+                                    <div class="flex-w flex-b m-b-3">
+                                        <a href="#" class="name-item-mainmenu txt21">
+                                            <%= receta.nombre%>
+                                        </a>
 
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
+                                        <div class="line-item-mainmenu bg3-pattern"></div>
 
-                                    <div class="price-item-mainmenu txt22">
-                                        $700 <button type="button" class="btn btn-danger">Pedir</button>
+                                        <div class="price-item-mainmenu txt22">
+                                            $ <%= receta.precio%> <input type="hidden" value="<%= receta.id%>" name="id">
+
+                                        </div>
                                     </div>
-                                </div>
 
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
+                                    <span class="info-item-mainmenu txt23">
+                                        <%= receta.descripcion%>
 
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        repollo
-                                    </a>
+                                    </span>
+                                    <div class="col-md-5">
+                                        <!-- Email -->
 
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
 
-                                    <div class="price-item-mainmenu txt22">
-                                        $500 <button type="button" class="btn btn-danger">Pedir</button>
+                                        <div class="wrap-inputemail input-group size12 bo2 bo-rad-10 m-t-3 m-b-23">
+
+                                            <input type="number" class="bo-rad-10 sizefull txt10 p-l-20" name="cantidad"   placeholder="Cantidad" required>
+
+                                            <input type="submit" value="pedir" name="btnPedir"  class="btn btn-danger ">
+                                        </div>
                                     </div>
+
                                 </div>
+                            </form>
+                            <% }%>
 
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
+                           
 
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        vetarraga
-                                    </a>
+                         
 
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
+                         
 
-                                    <div class="price-item-mainmenu txt22">
-                                        $600 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
 
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="wrap-item-mainmenu p-b-22">
-                            <h3 class="tit-mainmenu tit10 p-b-25">
-                                BEBIDAS
-                            </h3>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        coca-cola
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $1200 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        pepsi
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $1200 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        canada dry
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $800 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        mc cola
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $500<button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto">
-                        <div class="wrap-item-mainmenu p-b-22">
-                            <h3 class="tit-mainmenu tit10 p-b-25">
-                                PLATOS
-                            </h3>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        Porotos
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $2600 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        Arroz
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $2400 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        Pure
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $2400 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        Tallarines
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $2500 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        cazuela
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $3000 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        carbonada
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $2700 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        mariscal
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $3500 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="wrap-item-mainmenu p-b-22">
-                            <h3 class="tit-mainmenu tit10 p-b-25">
-                                Otros
-                            </h3>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        otros
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $100 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        otros
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $100 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
-
-                            <!-- Item mainmenu -->
-                            <div class="item-mainmenu m-b-36">
-                                <div class="flex-w flex-b m-b-3">
-                                    <a href="#" class="name-item-mainmenu txt21">
-                                        otros
-                                    </a>
-
-                                    <div class="line-item-mainmenu bg3-pattern"></div>
-
-                                    <div class="price-item-mainmenu txt22">
-                                        $100 <button type="button" class="btn btn-danger">Pedir</button>
-                                    </div>
-                                </div>
-
-                                <span class="info-item-mainmenu txt23">
-                                    leve descripcion
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+                            
+                            <br><br>
+                                <center>
+        <span class="tit2 t-center" >
+            Sus Pedidos
+        </span>
+    </center>
+    <br>
+    <br>
+
+
+        <%            //CONECTANOD A LA BASE DE DATOS:
+            Connection con;
+            con = new Controlador.Conexion().getConnection();
+            PreparedStatement ps;
+            //Emnpezamos Listando los Datos de la Tabla Usuario
+
+            Statement smt;
+            ResultSet rs;
+            smt = con.createStatement();
+
+            rs = smt.executeQuery("select * from orden");
+
+            //Creamo la Tabla:     
+        %>
+
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
+                                <table  class="table table-striped table-bordered" id="tablaDatos">
+                                    <thead>
+                                        <tr> 
+
+                                            <th class="text-center">Cantidad</th>
+                                            <th class="text-center">Estado</th>
+                                           
+                                            <th class="text-center">Plato</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodys">
+                                        <%                    while (rs.next()) {
+                                            
+                                             if(rs.getString("mesa_id").equals(mesasession)){
+                                        %>
+                                        <tr>
+
+                                            <td class="text-center"><%= rs.getString("cantidad")%></td>
+                                           
+                                            <td class="text-center"> <%=Orden.estadoPalabra(rs.getInt("estado")) %></td>
+                                           
+                                            
+                                            <td class="text-center">
+
+                                                <%=Dao.DaoReceta.Read(rs.getInt("receta_id")).nombre%>
+                                            </td>
+
+
+
+
+                                        </tr>
+                                        <%}}%>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 
 
 

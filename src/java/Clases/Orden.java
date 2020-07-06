@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author maikolsb
  */
-public class Menu extends Conexion{
+public class Orden extends Conexion{
     
     
     
@@ -25,7 +25,7 @@ public class Menu extends Conexion{
         PreparedStatement pst = null;
 
         try {
-            String consulta = "insert into orden (cantidad,estado,emeda_id,receta_id) values(?,?,?,?)";
+            String consulta = "insert into orden (cantidad,estado,mesa_id,receta_id) values(?,?,?,?)";
             pst = getConnection().prepareStatement(consulta);
       //agregar unidad y precio_unitario
             pst.setInt(1, cantidad);
@@ -56,5 +56,24 @@ public class Menu extends Conexion{
 
         return false;
     }
+     
+      
+      
+      public static String estadoPalabra(int estado){
+          switch(estado){
+              case 1 :
+                  return "en preparacion";
+                  
+              case 2:
+                  return "servido";
+                  
+              case 3 : return "pagado";
+              
+              case 4 : return "no pagado";
+               
+              default : return "error";
+          
+          }
+      }
     
 }
