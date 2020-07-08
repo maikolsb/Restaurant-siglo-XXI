@@ -69,7 +69,7 @@
 
 
 
-    <body class="animsition">
+      <body class="animsition">
 
         <!-- Header -->
         <header>
@@ -89,7 +89,7 @@
                             <nav class="menu">
                                 <ul class="main_menu">
                                     <li>
-                                        <a href="#">Inicio</a>
+                                        <a href="IndexRestaurant.jsp">Inicio</a>
                                     </li>
 
                                     <li>
@@ -102,12 +102,10 @@
                                         <a href="ReservacionUsuario.jsp">Reservacion</a>
                                     </li>
 
-                                    <li>
-                                        <a href="#">Galeria</a>
-                                    </li>
+                             
 
                                     <li>
-                                        <a href="#">Nosotros</a>
+                                        <a href="NosotrosRestaurant.jsp">Nosotros</a>
                                     </li>
 
                                     <li>
@@ -159,7 +157,7 @@
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Inicio</a>
+                    <a href="IndexRestaurant.jsp" class="txt19">Inicio</a>
                 </li>
 
                 <li class="t-center m-b-13">
@@ -170,12 +168,10 @@
                     <a href="ReservacionUsuario.jsp" class="txt19">Reservacion</a>
                 </li>
 
-                <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Galleria</a>
-                </li>
+           
 
                 <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Nosotros</a>
+                    <a href="NosotrosRestaurant.jsp" class="txt19">Nosotros</a>
                 </li>
 
 
@@ -201,7 +197,7 @@
 
                 <li class="t-center">
                     <!-- Button3 -->
-                    <a href="#" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+                    <a href="ReservacionUsuario.jsp" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
                         Reservacion
                         <img src="usuarios/images/icons/logosigloxx.png" alt="" width="30%" >
                     </a>

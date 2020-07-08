@@ -44,7 +44,7 @@
 
 
 
-    <body class="animsition">
+       <body class="animsition">
 
         <!-- Header -->
         <header>
@@ -73,18 +73,17 @@
 
 
                                     <li>
-                                        <a href="#">Galeria</a>
-                                    </li>
-
-                                    <li>
                                         <a href="Nosotros.jsp">Nosotros</a>
                                     </li>
 
                                     <li>
                                         <a href="#">Contacto</a>
                                     </li>
+                                    <li>
+                                        <a href="LoginPagina.jsp">Iniciar sesion</a>
+                                    </li>
 
-                            
+
 
                                 </ul>
                             </nav>
@@ -120,9 +119,7 @@
                     <a href="MenuPrecios.jsp" class="txt19">Menu</a>
                 </li>
 
-                <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Galleria</a>
-                </li>
+               
 
                 <li class="t-center m-b-13">
                     <a href="Nosotros.jsp" class="txt19">Nosotros</a>
@@ -133,12 +130,16 @@
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Contacto</a>
                 </li>
+                
+                 <li class="t-center m-b-13">
+                    <a href="LoginPagina.jsp" class="txt19">Iniciar Sesion</a>
+                </li>
 
-             
+
 
                 <li class="t-center">
                     <!-- Button3 -->
-                    <a href="#" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+                    <a href="LoginPagina.jsp" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
                         Reservacion
                         <img src="usuarios/images/icons/logosigloxx.png" alt="" width="30%" >
                     </a>

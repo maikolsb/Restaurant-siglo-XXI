@@ -1,14 +1,15 @@
 <%-- 
-    Document   : MenuPrecios
-    Created on : 06-07-2020, 23:48:25
+    Document   : Index
+    Created on : 06-07-2020, 22:52:35
     Author     : maikolsb
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session = "true"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Inicio</title>
+        <title>Reservacion</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
@@ -39,11 +40,18 @@
         <link rel="stylesheet" type="text/css" href="usuarios/css/util.css">
         <link rel="stylesheet" type="text/css" href="usuarios/css/main.css">
         <!--===============================================================================================-->
+
+
+
+
     </head>
-    
 
 
-    <body class="animsition">
+
+
+
+
+         <body class="animsition">
 
         <!-- Header -->
         <header>
@@ -63,26 +71,38 @@
                             <nav class="menu">
                                 <ul class="main_menu">
                                     <li>
-                                        <a href="Index.jsp">Inicio</a>
+                                        <a href="IndexRestaurant.jsp">Inicio</a>
                                     </li>
 
                                     <li>
-                                        <a href="MenuPrecios.jsp">Menu</a>
+                                        <a href="MenuRestaurant.jsp">Menu</a>
                                     </li>
 
 
                                     <li>
-                                        <a href="Nosotros.jsp">Nosotros</a>
+
+                                        <a href="ReservacionUsuario.jsp">Reservacion</a>
+                                    </li>
+
+                             
+
+                                    <li>
+                                        <a href="NosotrosRestaurant.jsp">Nosotros</a>
                                     </li>
 
                                     <li>
                                         <a href="#">Contacto</a>
                                     </li>
+
                                     <li>
-                                        <a href="LoginPagina.jsp">Iniciar sesion</a>
+                                        <%                                            HttpSession sesion = request.getSession();
+                                            String usuario = sesion.getAttribute("elterriblenombre").toString();
+                                            String maikol = "prueba";
+                                            out.print("<a href='#' >" + usuario + "</a>");
+                                        %>
+
+
                                     </li>
-
-
 
                                 </ul>
                             </nav>
@@ -109,19 +129,31 @@
             <!-- - -->
             <ul class="menu-sidebar p-t-95 p-b-70">
 
-
                 <li class="t-center m-b-13">
-                    <a href="Index.jsp" class="txt19">Inicio</a>
+
+                    <%
+                        out.print("<a href='#' class='txt19'>" + usuario + "</a>");
+                    %>
+
+
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="MenuPrecios.jsp" class="txt19">Menu</a>
+                    <a href="IndexRestaurant.jsp" class="txt19">Inicio</a>
                 </li>
 
-               
+                <li class="t-center m-b-13">
+                    <a href="MenuRestaurant.jsp" class="txt19">Menu</a>
+                </li>
 
                 <li class="t-center m-b-13">
-                    <a href="Nosotros.jsp" class="txt19">Nosotros</a>
+                    <a href="ReservacionUsuario.jsp" class="txt19">Reservacion</a>
+                </li>
+
+           
+
+                <li class="t-center m-b-13">
+                    <a href="NosotrosRestaurant.jsp" class="txt19">Nosotros</a>
                 </li>
 
 
@@ -129,16 +161,25 @@
                 <li class="t-center m-b-13">
                     <a href="#" class="txt19">Contacto</a>
                 </li>
-                
-                 <li class="t-center m-b-13">
-                    <a href="LoginPagina.jsp" class="txt19">Iniciar Sesion</a>
+
+                <li class="t-center m-b-33">
+                    <%
+                        out.print(" <a class='txt19' name='cerrar' href='LoginPagina.jsp?cerrar=true'><i class='fa fa-power-off m-r-5 m-l-5'></i>Cerrar sesion</a>");
+
+                        if (request.getParameter("cerrar") != null) {
+                            request.getSession().invalidate();
+                            response.sendRedirect("LoginPagina.jsp");
+                            return;
+
+                        }
+
+                    %>
+
                 </li>
-
-
 
                 <li class="t-center">
                     <!-- Button3 -->
-                    <a href="LoginPagina.jsp" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+                    <a href="ReservacionUsuario.jsp" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
                         Reservacion
                         <img src="usuarios/images/icons/logosigloxx.png" alt="" width="30%" >
                     </a>
@@ -149,331 +190,229 @@
 
         </aside>
       
-           <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
-            <h2 class="tit6 t-center">
-                Menú
-                <img src="usuarios/images/icons/logosiglo.png" alt="" width="30%" >
-            </h2>
-        </section>
         
         
-        </br>
-            </br>
-        
-                    <center>
-                <span class="tit2 t-center" >
-                    Menú Restaurant Siglo XXI
-                </span>
-            </center>
-            </br>
-            </br>
-        
-        
-        
-        
-	<!-- Main menu -->
-	<section class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto">
-					<div class="wrap-item-mainmenu p-b-22">
-						<h3 class="tit-mainmenu tit10 p-b-25">
-							ENSALADAS
-						</h3>
+	<section class="section-slide">
+		<div class="wrap-slick1">
+			<div class="slick1">
+				<div class="item-slick1 item1-slick1" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
+						<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
+							Bienvenido a
+						</span>
 
-						<!-- Item mainmenu -->
-					
+						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
+							Restaurant Siglo XXI
+							
+						</h2>
 
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									lechuga
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$700
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									repollo
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$500 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									vetarraga
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$600 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-					</div>
-
-					<div class="wrap-item-mainmenu p-b-22">
-						<h3 class="tit-mainmenu tit10 p-b-25">
-							BEBIDAS
-						</h3>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									coca-cola
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$1200 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-							leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									pepsi
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$1200 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									canada dry
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$800 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									mc cola
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$500
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-							leve descripcion
-							</span>
+						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
+							<!-- Button1 -->
+							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+								Ver Menu
+							</a>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto">
-					<div class="wrap-item-mainmenu p-b-22">
-						<h3 class="tit-mainmenu tit10 p-b-25">
-							PLATOS
-						</h3>
+				<div class="item-slick1 item2-slick1" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
+					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
+							Bienvenido a
+						</span>
 
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									Porotos
-								</a>
+						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
+							Restaurant Siglo XXI
+							
+						</h2>
 
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$2600 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									Arroz
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$2400 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									Pure
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$2400 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									Tallarines
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$2500 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									cazuela
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$3000 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									carbonada
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$2700 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
-						</div>
-
-						<!-- Item mainmenu -->
-						<div class="item-mainmenu m-b-36">
-							<div class="flex-w flex-b m-b-3">
-								<a href="#" class="name-item-mainmenu txt21">
-									mariscal
-								</a>
-
-								<div class="line-item-mainmenu bg3-pattern"></div>
-
-								<div class="price-item-mainmenu txt22">
-									$3500 
-								</div>
-							</div>
-
-							<span class="info-item-mainmenu txt23">
-								leve descripcion
-							</span>
+						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
+							<!-- Button1 -->
+							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+								Ver Menu
+							</a>
 						</div>
 					</div>
+				</div>
 
-					
+				<div class="item-slick1 item3-slick1" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
+					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
+							Bienvenido a
+						</span>
 
-					
+						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
+							Restaurant Siglo XXI
+							
+						</h2>
+
+						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
+							<!-- Button1 -->
+							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+								Ver Menu
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="wrap-slick1-dots"></div>
+		</div>
+	</section>
+
+	<!-- Welcome -->
+	<section class="section-welcome bg1-pattern p-t-120 p-b-105">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-t-45 p-b-30">
+					<div class="wrap-text-welcome t-center">
+						<span class="tit2 t-center">
+							Restaurant Siglo XXI
+						</span>
+
+						<h3 class="tit3 t-center m-b-35 m-t-5">
+							Bienbenidos
+						</h3>
+
+						<p class="t-center m-b-22 size3 m-l-r-auto">
+							El restaurante siglo XXI, se encuentra en una zona ampliamente turística del país, atiende desde hace 50 años por sus dueños, quienes poco a poco fueron construyendo el local hasta hacerse conocido por su comida casera.
+						</p>
+
+						<a href="NosotrosRestaurant.jsp" class="txt4">
+							Ver mas
+							<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 p-b-30">
+					<div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto">
+						<img src="usuarios/images/cazuela.jpg" alt="IMG-OUR">
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-        
 
+	<!-- Intro -->
+	<section class="section-intro">
+		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(usuarios/images/bg-title-page-02.jpg);">
+			<span class="tit2 p-l-15 p-r-15">
+				Nuestros platos
+			</span>
+
+			<h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+				Restaurant Siglo XXI
+			</h3>
+		</div>
+
+		<div class="content-intro bg-white p-t-77 p-b-133">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 p-t-30">
+						<!-- Block1 -->
+						<div class="blo1">
+							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+								<a href="#"><img src="usuarios/images/pure.jpg" alt="IMG-INTRO"></a>
+							</div>
+
+							<div class="wrap-text-blo1 p-t-35">
+								<a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+									Pure con chuletas
+								</h4></a>
+
+								<p class="m-b-20">
+									Rico pure con chuletas preparado con los mejores ingredientes del lugar
+								</p>
+
+								<a href="MenuRestaurant.jsp" class="txt4">
+									Ver Menu
+									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 p-t-30">
+						<!-- Block1 -->
+						<div class="blo1">
+							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+								<a href="#"><img src="usuarios/images/papas.jpg" alt="IMG-INTRO"></a>
+							</div>
+
+							<div class="wrap-text-blo1 p-t-35">
+								<a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+									costillas de cerdo con arroz y papas fritas
+								</h4></a>
+
+								<p class="m-b-20">
+									Prueba las mejores costillas de cerdo acompañado con un rico arroz con papas fritas
+								</p>
+
+								<a href="MenuRestaurant.jsp" class="txt4">
+									Ver menu
+									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 p-t-30">
+						<!-- Block1 -->
+						<div class="blo1">
+							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+								<a href="#"><img src="usuarios/images/tallarines.jpg" alt="IMG-INTRO"></a>
+							</div>
+
+							<div class="wrap-text-blo1 p-t-35">
+								<a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+									Tallarines con albondigas
+								</h4></a>
+
+								<p class="m-b-20">
+									Prueba nuestras deliciosas pastas acompañadas de albondigas o otros de nuestros agregados
+								</p>
+
+								<a href="MenuRestaurant.jsp" class="txt4">
+									ver menu
+									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Our menu -->
+	
+
+
+	<!-- Event -->
+
+
+	<!-- Booking -->
+	
+
+
+
+
+	<!-- Video -->
+	<section class="section-video parallax100" style="background-image: url(usuarios/images/cazuela.jpg);">
+		<div class="content-video t-center p-t-225 p-b-250">
+			
+
+			<div  data-toggle="modal" data-target="#modal-video-01">
+				<div class="flex-c-m sizefull bo-cir  color1 hov1 trans-0-4">
+					
+                                        <iframe width="750" height="450" src="https://www.youtube.com/embed/8vmrozxI4Dw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<!-- Blog -->
@@ -656,4 +595,5 @@
 
     </body>
 </html>
+
 

@@ -13,14 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author maikolsb
  */
-@WebServlet(name = "servUsuarioLogin", urlPatterns = {"/servUsuarioLogin"})
-public class servUsuarioLogin extends HttpServlet {
+@WebServlet(name = "servAgregarCliente", urlPatterns = {"/servAgregarCliente"})
+public class servAgregarCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,23 +34,25 @@ public class servUsuarioLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+       
         String rut = request.getParameter("rut");
+        String nombre = request.getParameter("nombre");
+        String apellidopat = request.getParameter("apellidopat");
+        String apellidomat = request.getParameter("apellidomat");
+        String correo = request.getParameter("correo");
         String contraseña = request.getParameter("password");
+        String rol = request.getParameter("rol");
+        String estado = request.getParameter("estado");
 
-        if (new Consultas().autenticacion(rut, contraseña)) {
-            //co.obtenerUsuario(rut);
-            System.out.println();
+        Consultas co = new Consultas();
 
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("elterriblenombre", new Consultas().maquina(rut, contraseña));
-            sesion.setAttribute("elterriblenombre2", new Consultas().maquinaId(rut, contraseña));
-
-            response.sendRedirect("IndexRestaurant.jsp");
+        if (co.registrar(rut,nombre,apellidopat,apellidomat,correo,contraseña,Integer.parseInt(rol),Integer.parseInt(estado))) {
+            response.sendRedirect("LoginPagina.jsp");
         } else {
             response.sendRedirect("error.jsp");
         }
-
+       
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
