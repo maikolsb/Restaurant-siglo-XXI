@@ -61,17 +61,14 @@ public class Orden extends Conexion{
       
       public static String estadoPalabra(int estado){
           switch(estado){
-              case 1 :
-                  return "en preparacion";
-                  
+              case 1:
               case 2:
-                  return "servido";
-                  
-              case 3 : return "pagado";
+              case 3:
+                  return "En Preparacion";
               
-              case 4 : return "no pagado";
+              case 4 : return "Servido";
                
-              default : return "error";
+              default : return "Error";
           
           }
       }

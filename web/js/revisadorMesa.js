@@ -19,8 +19,6 @@ function revisarMesa(idMesa){
                     contentType: 'text/plain',
                     dataType: 'text'
                 }).done(function (r) {
-                    console.log(r);
-                    console.log(r=='si');
                         if(r==='si'){                            
                             $("#tablaDatos").load('TablaOrdenes.jsp');
                         }

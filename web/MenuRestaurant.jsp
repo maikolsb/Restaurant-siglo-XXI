@@ -48,7 +48,7 @@
         <%            
             String mesasession = (String) session.getAttribute("mesaid");
             if (mesasession == null) {
-                session.setAttribute("mesaid", "1");
+                response.sendRedirect("LoginMesa.jsp");
             }
 
         %>
@@ -308,35 +308,28 @@
                                                 //Creamo la Tabla:     
                                          %>
                                         <tr> 
-
-                                            <th class="text-center">Cantidad</th>
-                                            <th class="text-center">Estado</th>
-                                           
                                             <th class="text-center">Plato</th>
-
+                                            <th class="text-center">Cantidad</th>
+                                            <th class="text-center">Estado</th> 
 
                                         </tr>
                                     </thead>
                                     <tbody id="tbodys">
                                         <%                    while (rs.next()) {
                                             
-                                             if(rs.getString("mesa_id").equals(mesasession)){
+                                             if(rs.getString("mesa_id").equals(mesasession) && rs.getInt("estado")!=5){
                                         %>
                                         <tr>
-
-                                            <td class="text-center"><%= rs.getString("cantidad")%></td>
-                                           
-                                            <td class="text-center"> <%=Orden.estadoPalabra(rs.getInt("estado")) %></td>
-                                           
-                                            
                                             <td class="text-center">
 
                                                 <%=Dao.DaoReceta.Read(rs.getInt("receta_id")).nombre%>
                                             </td>
 
-
-
-
+                                            <td class="text-center"><%= rs.getString("cantidad")%></td>
+                                           
+                                            <td class="text-center"> <%=Orden.estadoPalabra(rs.getInt("estado")) %></td>
+                                           
+                                           
                                         </tr>
                                         <%}}%>
                                     </tbody>
@@ -575,15 +568,16 @@
         <script src="usuarios/js/main.js"></script>
         <script type="text/javascript">
             function revisarMesa(idMesa){  
-                fetch('/servOrdenesUpdate?idmesa='+idMesa)
-                .then(response => response.text())
-                .then(txt => {
-                    if(txt=="si"){
-                      console.log(txt);
-                      window.location.reload();
-                  } else {
-                      console.log(txt);
-                  }
+                $.ajax({
+                    type: 'GET',
+                    url: 'servOrdenesUpdate?idmesa='+idMesa,
+                    contentType: 'text/plain',
+                    dataType: 'text'
+                }).done(function (r) {
+                    console.log(r);
+                    if(r==='si'){                            
+                        $("#tablaDatos").load('TablaOrdenes.jsp');
+                    }
                 });
             }
             
