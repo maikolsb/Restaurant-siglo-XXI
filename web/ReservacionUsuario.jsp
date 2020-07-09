@@ -635,6 +635,11 @@
         <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
         <script type="text/javascript">
             $('.parallax100').parallax100();
+            
+            $('#datePicker').daterangepicker({
+               locale: {
+                "format": "MM/DD/YYYY"}
+            });
         </script>
         <!--===============================================================================================-->
         <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>

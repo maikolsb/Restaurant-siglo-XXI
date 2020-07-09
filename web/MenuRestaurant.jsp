@@ -81,23 +81,23 @@
                             <nav class="menu">
                                 <ul class="main_menu">
                                     <li>
-                                        <a href="IndexRestaurant.jsp">Inicio</a>
+                                        <a href="MenuRestaurant.jsp">Inicio</a>
                                     </li>
 
                                     <li>
-                                        <a href="IniciarMenu.jsp">Menu</a>
+                                        <a href="#zonamenu">Menu</a>
                                     </li>
 
 
                                     <li>
 
-                                        <a href="ReservacionUsuario.jsp">Reservacion</a>
+                                        <a href="#zonapedidos">Pedidos</a>
                                     </li>
 
                              
 
                                     <li>
-                                        <a href="NosotrosRestaurant.jsp">Nosotros</a>
+                                        <a href="MenuPagar.jsp">Pagar</a>
                                     </li>
 
                                     <li>
@@ -201,7 +201,7 @@
 
 
 
-        <section class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
+        <section id="zonamenu" class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
             <center>
                 <span class="tit2 t-center" >
                     Menú Restaurant Siglo XXI
@@ -271,9 +271,9 @@
             </div>
         </section>
                             
-                            <br><br>
+                            <br id="zonapedidos"><br>
                                 <center>
-        <span class="tit2 t-center" >
+        <span   class="tit2 t-center" >
             Sus Pedidos
         </span>
     </center>
@@ -341,6 +341,9 @@
                 </div>
             </div>
         </div>
+                                   
+                                    
+                                   
 
 
 
@@ -574,7 +577,6 @@
                     contentType: 'text/plain',
                     dataType: 'text'
                 }).done(function (r) {
-                    console.log(r);
                     if(r==='si'){                            
                         $("#tablaDatos").load('TablaOrdenes.jsp');
                     }
