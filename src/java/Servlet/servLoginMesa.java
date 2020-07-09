@@ -38,6 +38,7 @@ public class servLoginMesa extends HttpServlet {
 
         String rut = request.getParameter("rut");
         String contraseña = request.getParameter("password");
+        String mesa = request.getParameter("mesa");
 
         if (new Consultas().autenticacion(rut, contraseña)) {
             //co.obtenerUsuario(rut);
@@ -46,8 +47,13 @@ public class servLoginMesa extends HttpServlet {
             HttpSession sesion = request.getSession();
             sesion.setAttribute("elterriblenombre", new Consultas().maquina(rut, contraseña));
             sesion.setAttribute("elterriblenombre2", new Consultas().maquinaId(rut, contraseña));
+            
+  
+         
+            sesion.setAttribute("mesaid",mesa);
 
-            response.sendRedirect("IndexRestaurant.jsp");
+
+            response.sendRedirect("IniciarMenu.jsp");
         } else {
             response.sendRedirect("error.jsp");
         }

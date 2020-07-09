@@ -75,7 +75,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="MenuRestaurant.jsp">Menu</a>
+                                        <a href="IniciarMenu.jsp">Menu</a>
                                     </li>
 
 
@@ -143,7 +143,7 @@
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="MenuRestaurant.jsp" class="txt19">Menu</a>
+                    <a href="IniciarMenu.jsp" class="txt19">Menu</a>
                 </li>
 
                 <li class="t-center m-b-13">
@@ -208,7 +208,7 @@
 
 						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
 							<!-- Button1 -->
-							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+							<a href="IniciarMenu.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
 								Ver Menu
 							</a>
 						</div>
@@ -228,7 +228,7 @@
 
 						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
 							<!-- Button1 -->
-							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+							<a href="IniciarMenu.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
 								Ver Menu
 							</a>
 						</div>
@@ -248,7 +248,7 @@
 
 						<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
 							<!-- Button1 -->
-							<a href="MenuRestaurant.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
+							<a href="IniciarMenu.jsp" class="btn1 flex-c-m size1 txt3 trans-0-4">
 								Ver Menu
 							</a>
 						</div>
@@ -326,7 +326,7 @@
 									Rico pure con chuletas preparado con los mejores ingredientes del lugar
 								</p>
 
-								<a href="MenuRestaurant.jsp" class="txt4">
+								<a href="IniciarMenu.jsp" class="txt4">
 									Ver Menu
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
@@ -350,7 +350,7 @@
 									Prueba las mejores costillas de cerdo acompañado con un rico arroz con papas fritas
 								</p>
 
-								<a href="MenuRestaurant.jsp" class="txt4">
+								<a href="IniciarMenu.jsp" class="txt4">
 									Ver menu
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
@@ -374,7 +374,7 @@
 									Prueba nuestras deliciosas pastas acompañadas de albondigas o otros de nuestros agregados
 								</p>
 
-								<a href="MenuRestaurant.jsp" class="txt4">
+								<a href="IniciarMenu.jsp" class="txt4">
 									ver menu
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>

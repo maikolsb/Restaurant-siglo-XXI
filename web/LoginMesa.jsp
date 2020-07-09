@@ -60,7 +60,7 @@
     <body class="animsition">
 
         <!-- Header -->
-      
+
 
 
 
@@ -125,6 +125,32 @@
                                         </div>
                                         <input type="password" class="form-control form-control-lg" placeholder="Contraseña" aria-label="Password" name="password" aria-describedby="basic-addon1" required="">
                                     </div>
+
+                                    <div class="input-group mb-3">
+                                   
+
+                                        <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                            <!-- Select2 -->
+                                            <select class="selection-1" name="mesa" required>
+                                                <option value="1" >Mesa 1</option>
+                                                <option value="2">Mesa 2</option>
+                                                <option value="3">Mesa 3</option>
+                                                <option value="4">Mesa 4</option>
+                                                <option value="5">Mesa 5</option>
+                                                <option value="6">Mesa 6</option>
+                                                <option value="7">Mesa 7</option>
+                                                <option value="8">Mesa 8</option>
+                                                <option value="9">Mesa 9</option>
+                                                <option value="10">Mesa 10</option>
+                                                <option value="11">Mesa 11</option>
+                                                <option value="12">Mesa 12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
                                 </div>
                             </div>
                             <div class="row border-top border-secondary">
@@ -133,15 +159,15 @@
                                         <div class="p-t-20">
                                             <a href="IniciarMenu.jsp" class="btn btn-info"    type="button"><i class="fa fa-lock m-r-5"></i> volver</a>
                                             <button class="btn btn-success float-right" value="Iniciar Sesión" type="submit">Iniciar sesion</button>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    
-                    
+
+
 
                 </div>
             </div>
@@ -204,7 +230,7 @@
 
 
         <!-- Footer -->
-      
+
 
 
         <!-- Back to top -->
