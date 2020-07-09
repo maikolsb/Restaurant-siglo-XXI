@@ -14,7 +14,7 @@
         <!--===============================================================================================-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
         <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="usuarios/images/icons/favicon.png"/>
+        <link rel="icon" type="image/png" href="usuarios/images/icons/logosiglo.png"/>
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="usuarios/vendor/bootstrap/css/bootstrap.min.css">
         <!--===============================================================================================-->
@@ -68,7 +68,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="MenuRestaurant.jsp">Menu</a>
+                                        <a href="Plantilla.jsp">Menu</a>
                                     </li>
 
 

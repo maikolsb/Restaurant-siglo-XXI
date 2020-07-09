@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Plantilla
-    Created on : 06-07-2020, 22:56:28
+    Document   : IniciarMenu
+    Created on : 08-07-2020, 21:55:32
     Author     : maikolsb
 --%>
 
@@ -207,3 +207,4 @@
 
     </body>
 </html>
+
