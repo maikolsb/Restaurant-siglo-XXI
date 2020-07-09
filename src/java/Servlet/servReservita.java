@@ -69,7 +69,7 @@ public class servReservita extends HttpServlet {
 
             Reservita re = new Reservita();
             if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt)) {
-                response.sendRedirect("menu.jsp");
+                response.sendRedirect("ReservacionUsuario.jsp");
             } else {
                 response.sendRedirect("error.jsp");
             }

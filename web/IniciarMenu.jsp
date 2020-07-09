@@ -63,7 +63,7 @@
 
                             <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="lightSpeedIn">
                                 Restaurant Siglo XXI
-                                <a href="MenuPrecios.jsp" class="btn btn-block btn-danger btn-info" >
+                                <a href="MenuRestaurant.jsp" class="btn btn-block btn-danger btn-info" >
                                     Iniciar atencion en mesa
 
 
@@ -86,7 +86,7 @@
 
                             <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="lightSpeedIn">
                                 Restaurant Siglo XXI
-                                <a href="MenuPrecios.jsp" class="btn btn-block btn-danger btn-info" >
+                                <a href="MenuRestaurant.jsp" class="btn btn-block btn-danger btn-info" >
                                     Iniciar atencion en mesa
 
 
@@ -109,7 +109,7 @@
 
                             <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="lightSpeedIn">
                                 Restaurant Siglo XXI
-                                <a href="MenuPrecios.jsp" class="btn btn-block btn-danger btn-info" >
+                                <a href="MenuRestaurant.jsp" class="btn btn-block btn-danger btn-info" >
                                     Iniciar atencion en mesa
 
 

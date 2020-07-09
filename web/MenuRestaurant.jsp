@@ -85,7 +85,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="MenuRestaurant.jsp">Menu</a>
+                                        <a href="IniciarMenu.jsp">Menu</a>
                                     </li>
 
 
@@ -145,7 +145,7 @@
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="MenuRestaurant.jsp" class="txt19">Menu</a>
+                    <a href="IniciarMenu.jsp" class="txt19">Menu</a>
                 </li>
 
                 <li class="t-center m-b-13">
