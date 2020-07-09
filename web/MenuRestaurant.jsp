@@ -45,19 +45,11 @@
         <!--===============================================================================================-->
 
 
-        <%
-
-            String mesita = request.getParameter("mesa");
+        <%            
             String mesasession = (String) session.getAttribute("mesaid");
-            if (mesita == null) {
-                if (mesasession == null) {
-                    session.setAttribute("mesaid", "1");
-                }
-            } else {
-                session.setAttribute("mesaid", mesita);
-                response.sendRedirect("MenuRestaurant.jsp");
+            if (mesasession == null) {
+                session.setAttribute("mesaid", "1");
             }
-
 
         %>
 
@@ -113,11 +105,6 @@
                                     </li>
 
                                     <li>
-                                        <%                                            HttpSession sesion = request.getSession();
-                                            String usuario = sesion.getAttribute("elterriblenombre").toString();
-                                            String maikol = "prueba";
-                                            out.print("<a href='#' >" + usuario + "</a>");
-                                        %>
 
 
                                     </li>
@@ -149,9 +136,6 @@
 
                 <li class="t-center m-b-13">
 
-                    <%
-                        out.print("<a href='#' class='txt19'>" + usuario + "</a>");
-                    %>
 
 
                 </li>
@@ -297,20 +281,7 @@
     <br>
 
 
-        <%            //CONECTANOD A LA BASE DE DATOS:
-            Connection con;
-            con = new Controlador.Conexion().getConnection();
-            PreparedStatement ps;
-            //Emnpezamos Listando los Datos de la Tabla Usuario
-
-            Statement smt;
-            ResultSet rs;
-            smt = con.createStatement();
-
-            rs = smt.executeQuery("select * from orden");
-
-            //Creamo la Tabla:     
-        %>
+        
 
 
 
@@ -319,10 +290,23 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
                             <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
                                 <table  class="table table-striped table-bordered" id="tablaDatos">
                                     <thead>
+                                        <%            //CONECTANOD A LA BASE DE DATOS:
+                                                Connection con;
+                                                con = new Controlador.Conexion().getConnection();
+                                                PreparedStatement ps;
+                                                //Emnpezamos Listando los Datos de la Tabla Usuario
+
+                                                Statement smt;
+                                                ResultSet rs;
+                                                smt = con.createStatement();
+
+                                                rs = smt.executeQuery("select * from orden");
+
+                                                //Creamo la Tabla:     
+                                         %>
                                         <tr> 
 
                                             <th class="text-center">Cantidad</th>
@@ -589,6 +573,21 @@
         <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
         <!--===============================================================================================-->
         <script src="usuarios/js/main.js"></script>
-
+        <script type="text/javascript">
+            function revisarMesa(idMesa){  
+                fetch('/servOrdenesUpdate?idmesa='+idMesa)
+                .then(response => response.text())
+                .then(txt => {
+                    if(txt=="si"){
+                      console.log(txt);
+                      window.location.reload();
+                  } else {
+                      console.log(txt);
+                  }
+                });
+            }
+            
+            setInterval(revisarMesa,5000,<%=mesasession%>);
+        </script>
     </body>
 </html>
