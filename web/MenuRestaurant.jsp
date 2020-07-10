@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Reservacion</title>
+        <title>Restaurant</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
@@ -45,7 +45,7 @@
         <!--===============================================================================================-->
 
 
-        <%            
+        <%
             String mesasession = (String) session.getAttribute("mesaid");
             if (mesasession == null) {
                 response.sendRedirect("LoginMesa.jsp");
@@ -61,7 +61,7 @@
 
 
 
-      <body class="animsition">
+    <body class="animsition">
 
         <!-- Header -->
         <header>
@@ -80,9 +80,7 @@
                         <div class="wrap_menu p-l-45 p-l-0-xl">
                             <nav class="menu">
                                 <ul class="main_menu">
-                                    <li>
-                                        <a href="MenuRestaurant.jsp">Inicio</a>
-                                    </li>
+
 
                                     <li>
                                         <a href="#zonamenu">Menu</a>
@@ -94,20 +92,15 @@
                                         <a href="#zonapedidos">Pedidos</a>
                                     </li>
 
-                             
+
 
                                     <li>
-                                        <a href="MenuPagar.jsp">Pagar</a>
+                                        <a href="TablaBoleta.jsp#zonapago">Pagar</a>
                                     </li>
 
-                                    <li>
-                                        <a href="#">Contacto</a>
-                                    </li>
+                                 
 
-                                    <li>
-
-
-                                    </li>
+                                  
 
                                 </ul>
                             </nav>
@@ -140,53 +133,23 @@
 
                 </li>
 
-                <li class="t-center m-b-13">
-                    <a href="IndexRestaurant.jsp" class="txt19">Inicio</a>
-                </li>
+                
 
                 <li class="t-center m-b-13">
-                    <a href="IniciarMenu.jsp" class="txt19">Menu</a>
+                    <a href="#zonamenu" class="txt19">Menu</a>
                 </li>
 
                 <li class="t-center m-b-13">
-                    <a href="ReservacionUsuario.jsp" class="txt19">Reservacion</a>
+                    <a href="#zonapedidos" class="txt19">Pedido</a>
                 </li>
-
-           
-
-                <li class="t-center m-b-13">
-                    <a href="NosotrosRestaurant.jsp" class="txt19">Nosotros</a>
+                 <li class="t-center m-b-13">
+                    <a href="TablaBoleta.jsp#zonapago" class="txt19">Pagar</a>
                 </li>
 
 
 
-                <li class="t-center m-b-13">
-                    <a href="#" class="txt19">Contacto</a>
-                </li>
 
-                <li class="t-center m-b-33">
-                    <%
-                        out.print(" <a class='txt19' name='cerrar' href='LoginPagina.jsp?cerrar=true'><i class='fa fa-power-off m-r-5 m-l-5'></i>Cerrar sesion</a>");
 
-                        if (request.getParameter("cerrar") != null) {
-                            request.getSession().invalidate();
-                            response.sendRedirect("LoginPagina.jsp");
-                            return;
-
-                        }
-
-                    %>
-
-                </li>
-
-                <li class="t-center">
-                    <!-- Button3 -->
-                    <a href="ReservacionUsuario.jsp" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                        Reservacion
-                        <img src="usuarios/images/icons/logosigloxx.png" alt="" width="30%" >
-                    </a>
-                </li>
-            </ul>
 
 
 
@@ -258,11 +221,11 @@
                             </form>
                             <% }%>
 
-                           
 
-                         
 
-                         
+
+
+
 
 
                         </div>
@@ -270,9 +233,9 @@
                 </div>
             </div>
         </section>
-                            
-                            <br id="zonapedidos"><br>
-                                <center>
+
+        <br id="zonapedidos"><br>
+    <center>
         <span   class="tit2 t-center" >
             Sus Pedidos
         </span>
@@ -281,69 +244,77 @@
     <br>
 
 
-        
 
 
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
-                                <table  class="table table-striped table-bordered" id="tablaDatos">
-                                    <thead>
-                                        <%            //CONECTANOD A LA BASE DE DATOS:
-                                                Connection con;
-                                                con = new Controlador.Conexion().getConnection();
-                                                PreparedStatement ps;
-                                                //Emnpezamos Listando los Datos de la Tabla Usuario
 
-                                                Statement smt;
-                                                ResultSet rs;
-                                                smt = con.createStatement();
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">  <!--<a  class="btn btn-success" href="Agregar.jsp">Nuevo Registro</a> Esto es Cuando se Crea un nuevo Archivo Agregar.jsp -->         
+                            <table  class="table table-striped table-bordered" id="tablaDatos">
+                                <thead>
+                                    <%            //CONECTANOD A LA BASE DE DATOS:
+                                        Connection con;
+                                        con = new Controlador.Conexion().getConnection();
+                                        PreparedStatement ps;
+                                        //Emnpezamos Listando los Datos de la Tabla Usuario
 
-                                                rs = smt.executeQuery("select * from orden");
+                                        Statement smt;
+                                        ResultSet rs;
+                                        smt = con.createStatement();
 
-                                                //Creamo la Tabla:     
-                                         %>
-                                        <tr> 
-                                            <th class="text-center">Plato</th>
-                                            <th class="text-center">Cantidad</th>
-                                            <th class="text-center">Estado</th> 
+                                        rs = smt.executeQuery("select * from orden");
 
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbodys">
-                                        <%                    while (rs.next()) {
-                                            
-                                             if(rs.getString("mesa_id").equals(mesasession) && rs.getInt("estado")!=5){
-                                        %>
-                                        <tr>
-                                            <td class="text-center">
+                                        //Creamo la Tabla:     
+                                    %>
+                                    <tr> 
+                                        <th class="text-center">Plato</th>
+                                        <th class="text-center">Cantidad</th>
+                                        <th class="text-center">Estado</th> 
 
-                                                <%=Dao.DaoReceta.Read(rs.getInt("receta_id")).nombre%>
-                                            </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodys">
+                                    <%                    while (rs.next()) {
 
-                                            <td class="text-center"><%= rs.getString("cantidad")%></td>
-                                           
-                                            <td class="text-center"> <%=Orden.estadoPalabra(rs.getInt("estado")) %></td>
-                                           
-                                           
-                                        </tr>
-                                        <%}}%>
-                                    </tbody>
+                                            if (rs.getString("mesa_id").equals(mesasession) && rs.getInt("estado") != 5) {
+                                    %>
+                                    <tr>
+                                        <td class="text-center">
 
-                                </table>
-                            </div>
+                                            <%=Dao.DaoReceta.Read(rs.getInt("receta_id")).nombre%>
+                                        </td>
+
+                                        <td class="text-center"><%= rs.getString("cantidad")%></td>
+
+                                        <td class="text-center"> <%=Orden.estadoPalabra(rs.getInt("estado"))%></td>
+
+
+                                    </tr>
+                                    <%}
+                                            }%>
+                                </tbody>
+
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                                   
-                                    
-                                   
+    </div>
+           <br>                     
+    <div class="text-center">
+        <a  class="btn btn-danger"  href="TablaBoleta.jsp#zonapago">Proceder a pagar</a>
+      </div>
+
+
+
+                             
+
+<br><br><br><br><br><br><br><br><br><br>
 
 
 
@@ -355,175 +326,17 @@
 
 
 
+    <!-- Title Page -->
+      <footer class="bg1">
 
-
-
-
-        <!-- Title Page -->
-
-        <section>
-            <div class="info-reservation flex-w p-t-80">
-                <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
-                    <h4 class="txt5 m-b-18">
-                        Reserve por telefono
-                    </h4>
-
-                    <p class="size25">
-                        Llamanos para reservar 
-                        <span class="txt25"> a este numero</span>
-
-                        <span class="txt25"> </span>
-
-                        <span class="txt24">(+569) 345 6889</span>
-                        o envianos un correo 
-                    </p>
-                </div>
-
-                <div class="size24 w-full-md p-t-40">
-                    <h4 class="txt5 m-b-18">
-                        Reservar para eventos
-                    </h4>
-
-                    <p class="size26">
-                        llamanos
-                        <span class="txt24">(+569) 345 6889</span>
-                        , para reservar
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-
-
-
-
-
-
-
-        <!-- Footer -->
-        <footer class="bg1">
-            <div class="container p-t-40 p-b-70">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Contactanos
-                        </h4>
-
-                        <ul class="m-b-70">
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                Calle falsa #123
-                            </li>
-
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                (+569) 96716 6879
-                            </li>
-
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                                sigloXXI@gmail.com
-                            </li>
-                        </ul>
-
-                        <!-- - -->
-                        <h4 class="txt13 m-b-32">
-                            Horario de atención
-                        </h4>
-
-                        <ul>
-                            <li class="txt14">
-                                09:30 AM – 11:00 PM
-                            </li>
-
-                            <li class="txt14">
-                                Todos los dias
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Ultimos Twitter
-                        </h4>
-
-                        <div class="m-b-25">
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="#" class="txt15">
-                                @sigloXXI
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Hola buenos dias
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="#" class="txt15">
-                                @sigloXXI
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Buenas tardes
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-38">
-                            Galeria
-                        </h4>
-
-                        <!-- Gallery footer -->
-                        <div class="wrap-gallery-footer flex-w">
-                            <a class="item-gallery-footer wrap-pic-w" href="usuarios/images/icons/logosigloxx.png" data-lightbox="gallery-footer">
-                                <img src="usuarios/images/icons/logosigloxx.png" alt="GALLERY">
-                            </a>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
             <div class="end-footer bg2">
                 <div class="container">
                     <div class="flex-sb-m flex-w p-t-22 p-b-22">
-                        <div class="p-t-5 p-b-5">
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-                        </div>
+
 
                         <div class="txt17 p-r-20 p-t-5 p-b-5">
-                            Todos los derechos reservados     <i class="fa fa-heart"></i> por <a href="#" target="_blank"> RESTAURANT SIGLO XXI</a>
+                            <a href="LoginMesa.jsp" target="_blank">Acceso administrador</a>
                         </div>
                     </div>
                 </div>
@@ -531,59 +344,59 @@
         </footer>
 
 
-        <!-- Back to top -->
-        <div class="btn-back-to-top bg0-hov" id="myBtn">
-            <span class="symbol-btn-back-to-top">
-                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-            </span>
-        </div>
+    <!-- Back to top -->
+    <div class="btn-back-to-top bg0-hov" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+        </span>
+    </div>
 
-        <!-- Container Selection1 -->
-        <div id="dropDownSelect1"></div>
+    <!-- Container Selection1 -->
+    <div id="dropDownSelect1"></div>
 
 
 
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
-        <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
-        <script type="text/javascript">
-            $('.parallax100').parallax100();
-        </script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="usuarios/js/main.js"></script>
-        <script type="text/javascript">
-            function revisarMesa(idMesa){  
-                $.ajax({
-                    type: 'GET',
-                    url: 'servOrdenesUpdate?idmesa='+idMesa,
-                    contentType: 'text/plain',
-                    dataType: 'text'
-                }).done(function (r) {
-                    if(r==='si'){                            
-                        $("#tablaDatos").load('TablaOrdenes.jsp');
-                    }
-                });
-            }
-            
-            setInterval(revisarMesa,5000,<%=mesasession%>);
-        </script>
-    </body>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
+    <script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
+    <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
+    <script type="text/javascript">
+        $('.parallax100').parallax100();
+    </script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="usuarios/js/main.js"></script>
+    <script type="text/javascript">
+        function revisarMesa(idMesa) {
+            $.ajax({
+                type: 'GET',
+                url: 'servOrdenesUpdate?idmesa=' + idMesa,
+                contentType: 'text/plain',
+                dataType: 'text'
+            }).done(function (r) {
+                if (r === 'si') {
+                    $("#tablaDatos").load('TablaOrdenes.jsp');
+                }
+            });
+        }
+
+        setInterval(revisarMesa, 5000,<%=mesasession%>);
+    </script>
+</body>
 </html>

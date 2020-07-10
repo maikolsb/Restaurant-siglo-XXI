@@ -1,3 +1,9 @@
+<%-- 
+    Document   : FinalizarPago
+    Created on : 10-07-2020, 0:09:43
+    Author     : maikolsb
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session = "true"%>
 <!DOCTYPE html>

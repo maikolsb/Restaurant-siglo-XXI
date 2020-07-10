@@ -11,7 +11,7 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+       <title>Restaurant</title>
 
      
         <meta charset="utf-8">
@@ -22,7 +22,7 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="paginaAdmin/assets/images/favicon.png">
-        <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+        
         <!-- Custom CSS -->
         <link href="paginaAdmin/dist/css/style.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
