@@ -275,9 +275,10 @@
                         </div>
 
 
-
+                 
                         <div class="col-md-12"><br>
-                            
+                         
+                             <form method="post" action="servBoleta" >
                             
                             <div class="col-md-12">                   
                                 <div  class="pull-right m-t-30 text-right">
@@ -287,9 +288,11 @@
                                         <br>
 
                                     </h4>
-
-                                    <input type="radio" name="pago" value="Webpay" notchecked required>Pago web
-                                    <input type="radio" name="pago" value="Efectivo" notchecked required>Efectivo<br>
+ 
+                                    <label for="opcionwp">Pago web</label>
+                                        <input type="radio" name="pago" id="opcionwp" value="Webpay" notchecked required>
+                                        <label for="opcionefe">Efectivo</label>
+                                    <input type="radio" name="pago" id="opcionefe" value="Efectivo" notchecked required>
 
                                     </br>
 
@@ -300,6 +303,7 @@
 
                                 <hr>
                                 <h3><b>Total :</b> <%=total%></h3>
+                                <input name="total" value="<%=total%>" type="hidden"> 
                             </div>
 
                             <div class="clearfix"></div>
@@ -309,9 +313,11 @@
 
                             <div class="text-right">
                                 
-                                <a class="btn btn-danger" href="FinalizarPago.jsp">Proceder a pagar</a>
+                                <button class="btn btn-danger" type="submit" >Proceder a pagar</button>
                             </div>
-                        </div>
+                        
+                            </form>
+                            </div>
                     </div>
                 </div>
             </div>

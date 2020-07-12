@@ -64,11 +64,13 @@
 
                             <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="lightSpeedIn">
                                 Restaurant Siglo XXI
-                                <a href="IniciarMenu.jsp" class="btn btn-block btn-danger btn-info" >
-                                    Finalizar atencion
+                                  <form method="post" action="servLiberarMesa">
+                                <button class="btn btn-block btn-danger btn-info" type="submit">
+                                    Abandonar mesa
 
 
-                                </a>
+                                </button>
+                                    </form>
 
                             </span>
 
@@ -87,11 +89,13 @@
 
                             <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="lightSpeedIn">
                                 Restaurant Siglo XXI
-                                <a href="IniciarMenu.jsp" class="btn btn-block btn-danger btn-info" >
-                                    Finalizar atencion
+                                <form method="post" action="servLiberarMesa">
+                                <button class="btn btn-block btn-danger btn-info" type="submit">
+                                    Abandonar mesa
 
 
-                                </a>
+                                </button>
+                                    </form>
 
                             </span>
 

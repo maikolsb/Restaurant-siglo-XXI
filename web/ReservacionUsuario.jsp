@@ -50,7 +50,7 @@
 
 
 
-       <body class="animsition">
+    <body class="animsition">
 
         <!-- Header -->
         <header>
@@ -83,7 +83,7 @@
                                         <a href="ReservacionUsuario.jsp">Reservacion</a>
                                     </li>
 
-                             
+
 
                                     <li>
                                         <a href="NosotrosRestaurant.jsp">Nosotros</a>
@@ -149,7 +149,7 @@
                     <a href="ReservacionUsuario.jsp" class="txt19">Reservacion</a>
                 </li>
 
-           
+
 
                 <li class="t-center m-b-13">
                     <a href="NosotrosRestaurant.jsp" class="txt19">Nosotros</a>
@@ -218,7 +218,7 @@
 
                         <form action="servReservita" method="post" class="wrap-form-reservation size22 m-l-r-auto">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <!-- Date -->
                                     <span class="txt9">
                                         Fecha
@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <!-- Time -->
                                     <span class="txt9">
                                         Hora
@@ -262,7 +262,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <!-- People -->
                                     <span class="txt9">
                                         Cantidad de personas
@@ -286,31 +286,8 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-
-
-
-                                <div class="col-md-4">
-                                    <!-- People -->
-                                    <span class="txt9">
-                                        Numero de mesa
-                                    </span>
-
-                                    <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                        <!-- Select2 -->
-                                        <select class="selection-1" name="txtMesa" required>
-                                            <%
-                                            for(Mesa m : DaoMesa.listarMesa()){
-                                                out.print("<option>"+m.getNumero()+"</option>");
-                                            }
-                                            %>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
+                                
+                                     <div class="col-md-6">
                                     <!-- Email -->
                                     <span class="txt9">
                                         Telefono
@@ -321,6 +298,31 @@
                                 </div>
                                 
                                 
+                            </div>
+
+                            <div class="row">
+
+                           
+
+
+
+
+
+                                <div class="col-md-4">
+                                    <!-- Email -->
+
+
+                                    <input type="hidden" class="bo-rad-10 sizefull txt10 p-l-20"  name="txtMesa"  value="0">
+
+                                </div>
+
+
+
+
+
+
+
+
 
                                 <div class="col-md-4">
                                     <!-- Email -->
@@ -335,8 +337,7 @@
                                     <div >
 
 
-                                        <%  
-                                            String usuarioid = session.getAttribute("elterriblenombre2").toString();
+                                        <%                                            String usuarioid = session.getAttribute("elterriblenombre2").toString();
                                             out.print("<input type='hidden' name='txtNombre' value='" + usuarioid + "'>");
 
                                         %>
@@ -359,14 +360,14 @@
                     <div class="col-lg-6 p-b-30 p-t-18">
                         <div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto">
 
-                            <img src="usuarios/images/uwu.jpg" alt="IMG-OUR">
+                            <img src="usuarios/images/Reserva.jpeg" alt="IMG-OUR">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-                                    
-                                            </br>
+
+        </br>
         </br>
 
     <center>
@@ -376,11 +377,11 @@
     </center>
     </br>
     </br>
-                                    
-                                    
-                                    
-                      <%            //CONECTANOD A LA BASE DE DATOS:
-            Connection con;
+
+
+
+    <%            //CONECTANOD A LA BASE DE DATOS:
+        Connection con;
         con = new Controlador.Conexion().getConnection();
         PreparedStatement ps;
         //Emnpezamos Listando los Datos de la Tabla Usuario
@@ -393,11 +394,11 @@
 
         //Creamo la Tabla:     
     %>                  
-                                    
-                                    
-                                    
-                                    
-                                        <div class="container-fluid">
+
+
+
+
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -407,7 +408,7 @@
                             <table  class="table table-striped table-bordered" id="tablaDatos">
                                 <thead>
                                     <tr> 
-                                       
+
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Hora</th>
                                         <!-- <th class="text-center">Cantidad</th> -->
@@ -421,11 +422,11 @@
                                 </thead>
                                 <tbody id="tbodys">
                                     <%                    while (rs.next()) {
-                                        if(rs.getString("usuario_id").equals(usuarioid)){
-                                                  
+                                            if (rs.getString("usuario_id").equals(usuarioid)) {
+
                                     %>
                                     <tr>
-                                        
+
                                         <td class="text-center"><%= rs.getString("fecha")%></td>
                                         <td class="text-center"><%= rs.getString("hora")%></td>
                                         <!--
@@ -439,13 +440,13 @@
                                         <td class="text-center"><%= rs.getString("cantidad")%> personas</td>
                                         <%}%> 
                                         -->
-                                        
-                             
+
+
 
                                         <td class="text-center"><%= rs.getString("usuario_id")%></td>
                                         <td class="text-center"><%= rs.getString("telefono")%></td>
                                         <td class="text-center"><%= rs.getString("mesa_id")%></td>
-                                                                                 <%
+                                        <%
                                             if (rs.getInt("estado") == 1) {
                                         %>
                                         <td class="text-center">Reservado</td>
@@ -464,9 +465,10 @@
 
 
                                     </tr>
-                                    <%}}%>
+                                    <%}
+                                        }%>
                                 </tbody>
-                            
+
                             </table>
                         </div>
                     </div>
@@ -474,179 +476,179 @@
             </div>
         </div>
     </div>
-                                    
 
 
-        <!-- Footer -->
-        <footer class="bg1">
-            <div class="container p-t-40 p-b-70">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Contactanos
-                        </h4>
 
-                        <ul class="m-b-70">
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                Calle falsa #123
-                            </li>
+    <!-- Footer -->
+    <footer class="bg1">
+        <div class="container p-t-40 p-b-70">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 p-t-50">
+                    <!-- - -->
+                    <h4 class="txt13 m-b-33">
+                        Contactanos
+                    </h4>
 
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                (+569) 96716 6879
-                            </li>
+                    <ul class="m-b-70">
+                        <li class="txt14 m-b-14">
+                            <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                            Calle falsa #123
+                        </li>
 
-                            <li class="txt14 m-b-14">
-                                <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                                sigloXXI@gmail.com
-                            </li>
-                        </ul>
+                        <li class="txt14 m-b-14">
+                            <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                            (+569) 96716 6879
+                        </li>
 
-                        <!-- - -->
-                        <h4 class="txt13 m-b-32">
-                            Horario de atención
-                        </h4>
+                        <li class="txt14 m-b-14">
+                            <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+                            sigloXXI@gmail.com
+                        </li>
+                    </ul>
 
-                        <ul>
-                            <li class="txt14">
-                                09:30 AM – 11:00 PM
-                            </li>
+                    <!-- - -->
+                    <h4 class="txt13 m-b-32">
+                        Horario de atención
+                    </h4>
 
-                            <li class="txt14">
-                                Todos los dias
-                            </li>
-                        </ul>
+                    <ul>
+                        <li class="txt14">
+                            09:30 AM – 11:00 PM
+                        </li>
+
+                        <li class="txt14">
+                            Todos los dias
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-md-4 p-t-50">
+                    <!-- - -->
+                    <h4 class="txt13 m-b-33">
+                        Ultimos Twitter
+                    </h4>
+
+                    <div class="m-b-25">
+                        <span class="fs-13 color2 m-r-5">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </span>
+                        <a href="#" class="txt15">
+                            @sigloXXI
+                        </a>
+
+                        <p class="txt14 m-b-18">
+                            Hola buenos dias
+                            <a href="#" class="txt15">
+
+                            </a>
+                        </p>
+
+                        <span class="txt16">
+                            05 Jun 2019
+                        </span>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-33">
-                            Ultimos Twitter
-                        </h4>
+                    <div>
+                        <span class="fs-13 color2 m-r-5">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </span>
+                        <a href="#" class="txt15">
+                            @sigloXXI
+                        </a>
 
-                        <div class="m-b-25">
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
+                        <p class="txt14 m-b-18">
+                            Buenas tardes
                             <a href="#" class="txt15">
-                                @sigloXXI
+
                             </a>
+                        </p>
 
-                            <p class="txt14 m-b-18">
-                                Hola buenos dias
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="#" class="txt15">
-                                @sigloXXI
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Buenas tardes
-                                <a href="#" class="txt15">
-
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                05 Jun 2019
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-38">
-                            Galeria
-                        </h4>
-
-                        <!-- Gallery footer -->
-                        <div class="wrap-gallery-footer flex-w">
-                            <a class="item-gallery-footer wrap-pic-w" href="usuarios/images/icons/logosigloxx.png" data-lightbox="gallery-footer">
-                                <img src="usuarios/images/icons/logosigloxx.png" alt="GALLERY">
-                            </a>
-
-
-                        </div>
-
+                        <span class="txt16">
+                            05 Jun 2019
+                        </span>
                     </div>
                 </div>
-            </div>
 
-            <div class="end-footer bg2">
-                <div class="container">
-                    <div class="flex-sb-m flex-w p-t-22 p-b-22">
-                        <div class="p-t-5 p-b-5">
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-                            <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-                        </div>
+                <div class="col-sm-6 col-md-4 p-t-50">
+                    <!-- - -->
+                    <h4 class="txt13 m-b-38">
+                        Galeria
+                    </h4>
 
-                        <div class="txt17 p-r-20 p-t-5 p-b-5">
-                            Todos los derechos reservados     <i class="fa fa-heart"></i> por <a href="#" target="_blank"> RESTAURANT SIGLO XXI</a>
-                        </div>
+                    <!-- Gallery footer -->
+                    <div class="wrap-gallery-footer flex-w">
+                        <a class="item-gallery-footer wrap-pic-w" href="usuarios/images/icons/logosigloxx.png" data-lightbox="gallery-footer">
+                            <img src="usuarios/images/icons/logosigloxx.png" alt="GALLERY">
+                        </a>
+
+
                     </div>
+
                 </div>
             </div>
-        </footer>
-
-
-        <!-- Back to top -->
-        <div class="btn-back-to-top bg0-hov" id="myBtn">
-            <span class="symbol-btn-back-to-top">
-                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-            </span>
         </div>
 
-        <!-- Container Selection1 -->
-        <div id="dropDownSelect1"></div>
+        <div class="end-footer bg2">
+            <div class="container">
+                <div class="flex-sb-m flex-w p-t-22 p-b-22">
+                    <div class="p-t-5 p-b-5">
+                        <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+                        <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+                        <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="txt17 p-r-20 p-t-5 p-b-5">
+                        Todos los derechos reservados     <i class="fa fa-heart"></i> por <a href="#" target="_blank"> RESTAURANT SIGLO XXI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top bg0-hov" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+        </span>
+    </div>
+
+    <!-- Container Selection1 -->
+    <div id="dropDownSelect1"></div>
 
 
 
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
-        <script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
-        <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
-        <script type="text/javascript">
-            $('.parallax100').parallax100();
-            
-            $('#datePicker').daterangepicker({
-               locale: {
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/bootstrap/js/popper.js"></script>
+    <script type="text/javascript" src="usuarios/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="usuarios/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/slick/slick.min.js"></script>
+    <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
+    <script type="text/javascript">
+        $('.parallax100').parallax100();
+
+        $('#datePicker').daterangepicker({
+            locale: {
                 "format": "MM/DD/YYYY"}
-            });
-        </script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="usuarios/js/main.js"></script>
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="usuarios/js/main.js"></script>
 
-    </body>
+</body>
 </html>
