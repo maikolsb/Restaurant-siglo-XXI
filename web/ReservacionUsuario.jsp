@@ -3,6 +3,7 @@
     Created on : 21-06-2020, 0:19:51
     Author     : maikolsb
 --%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.sql.*"%>
 <%@page import="Ent.Mesa"%>
 <%@page import="Dao.DaoMesa"%>
@@ -94,7 +95,11 @@
                                     </li>
 
                                     <li>
-                                        <%                                            HttpSession sesion = request.getSession();
+                                        <%  
+                                            HttpSession sesion = request.getSession();
+                                            if(sesion==null){
+                                                response.sendRedirect("ErrorNoLogin.jsp");
+                                            }
                                             String usuario = sesion.getAttribute("elterriblenombre").toString();
                                             String maikol = "prueba";
                                             out.print("<a href='#' >" + usuario + "</a>");
@@ -295,17 +300,15 @@
                                 <div class="col-md-4">
                                     <!-- People -->
                                     <span class="txt9">
-                                        Numero de mesa
+                                        Fumadores
                                     </span>
 
                                     <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                         <!-- Select2 -->
-                                        <select class="selection-1" name="txtMesa" required>
-                                            <%
-                                            for(Mesa m : DaoMesa.listarMesa()){
-                                                out.print("<option>"+m.getNumero()+"</option>");
-                                            }
-                                            %>
+                                        <input type="hidden" name="txtMesa"  value="0">
+                                        <select class="selection-1" name="chkFumadores" required>
+                                            <option value="1">No</option>
+                                            <option value="2">Si</option>
                                         </select>
                                     </div>
                                 </div>
@@ -411,10 +414,10 @@
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Hora</th>
                                         <!-- <th class="text-center">Cantidad</th> -->
-                                        <th class="text-center">Usuario</th>
+                                        <th class="text-center">Personas</th>
                                         <th class="text-center">Telefono</th>
-                                        <th class="text-center">Mesa</th>
                                         <th class="text-center">Estado</th>
+                                        <th class="text-center">Fumadores</th>
                                         <th class="text-center">Acciones</th>
 
                                     </tr>
@@ -444,7 +447,6 @@
 
                                         <td class="text-center"><%= rs.getString("usuario_id")%></td>
                                         <td class="text-center"><%= rs.getString("telefono")%></td>
-                                        <td class="text-center"><%= rs.getString("mesa_id")%></td>
                                                                                  <%
                                             if (rs.getInt("estado") == 1) {
                                         %>
@@ -454,8 +456,10 @@
                                         %>
                                         <td class="text-center"><%= rs.getString("estado")%>Cancelado</td>
                                         <%}%> 
+                                        
+                                        <td class="text-center"><%= rs.getNString("fumadores")%></td>
 
-                                        <td>
+                                        <td class="text-center">
                                             <a href="Eliminar/EliminarReserva.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger">Cancelar Reserva</a>
 
 
@@ -633,13 +637,10 @@
         <script type="text/javascript" src="usuarios/js/slick-custom.js"></script>
         <!--===============================================================================================-->
         <script type="text/javascript" src="usuarios/vendor/parallax100/parallax100.js"></script>
+
         <script type="text/javascript">
             $('.parallax100').parallax100();
-            
-            $('#datePicker').daterangepicker({
-               locale: {
-                "format": "MM/DD/YYYY"}
-            });
+
         </script>
         <!--===============================================================================================-->
         <script type="text/javascript" src="usuarios/vendor/countdowntime/countdowntime.js"></script>

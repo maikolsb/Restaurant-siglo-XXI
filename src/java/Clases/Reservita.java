@@ -22,11 +22,11 @@ public class Reservita extends Conexion {
     
     
     
-      public boolean registrar(String fecha, String hora, String cantidad,int usuario_id,int telefono, int mesa_id,int estado) {
+      public boolean registrar(String fecha, String hora, String cantidad,int usuario_id,int telefono, int mesa_id,int estado, int fumador) {
         PreparedStatement pst = null;
 
         try {
-            String consulta = "insert into reserva (fecha,hora,cantidad,usuario_id,telefono,mesa_id,estado) values(?,?,?,?,?,?,?)";
+            String consulta = "insert into reserva (fecha,hora,cantidad,usuario_id,telefono,mesa_id,estado,fumadores) values(?,?,?,?,?,?,?)";
             pst = getConnection().prepareStatement(consulta);
             pst.setString(1, fecha);
             pst.setString(2, hora);
@@ -35,6 +35,7 @@ public class Reservita extends Conexion {
             pst.setInt(5, telefono);
             pst.setInt(6, mesa_id);
             pst.setInt(7, estado);
+            pst.setInt(8, fumador);
 
             if (pst.executeUpdate() == 1) {
                 return true;

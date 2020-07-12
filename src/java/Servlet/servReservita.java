@@ -51,24 +51,26 @@ public class servReservita extends HttpServlet {
         String telefono = request.getParameter("txtTelefono");
         String mesa_id = request.getParameter("txtMesa");
         String estado = request.getParameter("txtEstado");
+        String fumadores = request.getParameter("chkFumadores");
         
         String id= request.getParameter("id");
         
         String idReserva= request.getParameter("id");
         
         if (request.getParameter("BtnReserva") != null) {
-       response.sendRedirect("CancelarReserva.jsp?id="+idReserva);
-      }
+            response.sendRedirect("CancelarReserva.jsp?id=" + idReserva);
+        }
 
         try {
             int uIdInt = Integer.parseInt(usuario_id);
             int telefonoInt = Integer.parseInt(telefono);
             int mesaIdInt = Integer.parseInt(mesa_id);
             int estadoInt = Integer.parseInt(estado);
+            int fumadoresInt = fumadores=="No" ? 1 : 2;
 
 
             Reservita re = new Reservita();
-            if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt)) {
+            if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt, fumadoresInt)) {
                 response.sendRedirect("ReservacionUsuario.jsp");
             } else {
                 response.sendRedirect("error.jsp");

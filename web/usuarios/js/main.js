@@ -53,6 +53,7 @@
     $('.my-calendar').daterangepicker({
         "singleDatePicker": true,
         "showDropdowns": true,
+        "minDate": new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),
         locale: {
             format: 'D/M/YYYY'
         },

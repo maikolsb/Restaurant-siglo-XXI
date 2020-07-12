@@ -95,7 +95,9 @@
                                     </li>
 
                                     <li>
-                                        <%                                            HttpSession sesion = request.getSession();
+                                        <%   
+                                            HttpSession sesion = request.getSession();
+                                            if(sesion == null) response.sendRedirect("ErrorNoLogin.jsp");
                                             String usuario = sesion.getAttribute("elterriblenombre").toString();
                                             String maikol = "prueba";
                                             out.print("<a href='#' >" + usuario + "</a>");

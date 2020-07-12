@@ -47,7 +47,7 @@ public class servAgregarCliente extends HttpServlet {
         Consultas co = new Consultas();
 
         if (co.registrar(rut,nombre,apellidopat,apellidomat,correo,contraseña,Integer.parseInt(rol),Integer.parseInt(estado))) {
-            response.sendRedirect("LoginPagina.jsp");
+            response.sendRedirect("LoginPagina.jsp?mensaje=creado");
         } else {
             response.sendRedirect("error.jsp");
         }
