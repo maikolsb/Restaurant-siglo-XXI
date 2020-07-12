@@ -208,15 +208,20 @@
             <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
                 <div class="auth-box bg-dark border-top border-secondary">
                     <div id="loginform">
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
+ 
                         <div class="text-center p-t-20 p-b-20">
                             <h3 class="text-white" align="left">Bienvenido inicia sesión</h3>
                         </div>
+                        
+                        <% if(request.getParameter("mensaje")!=null){ %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <%=request.getParameter("mensaje")%>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <% } %>
+                        
                         <!-- Form -->
                         <form class="form-horizontal m-t-20"  action="servUsuarioLogin" method="post" id="loginform" >
                             <div class="row p-b-30">

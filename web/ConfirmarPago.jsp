@@ -1,12 +1,13 @@
-<%@page import="Ent.Receta"%>
-<%@page import="Dao.DaoReceta"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Dao.DaoOrden"%>
-<%@page import="Ent.Orden"%>
-<%@page import="java.sql.*"%>
+<%-- 
+    Document   : ConfirmarPago
+    Created on : 11-07-2020, 23:04:33
+    Author     : Sebastian
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<head>
+<html>
+    <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +56,22 @@
     <link rel="stylesheet" type="text/css" href="usuarios/css/util.css">
     <link rel="stylesheet" type="text/css" href="usuarios/css/main.css">
     <!--===============================================================================================-->
+    <style>
+        .loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
 
 </head>
 <body>
@@ -80,22 +96,6 @@
                         <nav class="menu">
                             <ul class="main_menu">
 
-
-                                <li>
-                                    <a href="MenuRestaurant.jsp#zonamenu">Menu</a>
-                                </li>
-
-
-                                <li>
-
-                                    <a href="MenuRestaurant.jsp#zonapedidos">Pedidos</a>
-                                </li>
-
-
-
-                                <li>
-                                    <a href="TablaBoleta.jsp#zonapago">Pagar</a>
-                                </li>
 
 
 
@@ -126,24 +126,7 @@
         <!-- - -->
         <ul class="menu-sidebar p-t-95 p-b-70">
 
-            <li class="t-center m-b-13">
-
-
-
-            </li>
-
-
-
-            <li class="t-center m-b-13">
-                <a href="MenuRestaurant.jsp#zonamenu" class="txt19">Menu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="MenuRestaurant.jsp#zonapedidos" class="txt19">Pedido</a>
-            </li>
-            <li class="t-center m-b-13">
-                <a href="TablaBoleta.jsp#zonapago" class="txt19">Pagar</a>
-            </li>
+            
 
 
 
@@ -173,6 +156,7 @@
 
     <%
         String mesasession = (String) session.getAttribute("mesaid");
+        int boletaid = (int) session.getAttribute("idboleta");
         int mesaid = 0;
         try {
             mesaid = Integer.parseInt(mesasession);
@@ -197,129 +181,19 @@
 
                             <div class="pull-center text-center">
                                 <address>
-
-                                    <h4 class="font-bold">Restaurant Siglo XXI</h4>
                                     <span class="tit2 t-center" >
-                                        Boleta de consumo 
+                                        Confirmando pago
                                     </span>
+                                    <div class="loader"></div> 
+                                    <h4 class="font-bold">Esperando Confirmacion...</h4>
+                                    
 
                                     </p>
-
+                                    
                                 </address>
                             </div>
                         </div>
-                        <div class="col-md-12">
-
-                            <div class="table-responsive m-t-40" style="clear: both;">
-                                <table  class="table table-hover" id="tablaDatos">
-                                    <thead>
-
-                                        <% ArrayList<Orden> ordenes = new ArrayList<Orden>();
-
-                                            for (Orden o : new DaoOrden().All()) {
-                                                if (o.getMesa_id() == mesaid) {
-                                                    ordenes.add(o);
-                                                }
-                                            }
-                                            ArrayList<Receta> recetas = DaoReceta.All();
-
-                                        %>
-                                        <tr>
-                                            <th class="text-center">Plato</th>
-                                            <th class="text-center">Cantidad</th>
-                                            <th class="text-center">Precio</th> 
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbodys">
-                                        <%                                                    int total = 0;
-                                            for (Orden o : ordenes) {
-                                        %>
-                                        <tr>
-
-
-                                            <%
-                                                Receta recetita = null;
-                                                for (Receta r : recetas) {
-                                                    if (r.id == o.getReceta_id()) {
-                                                        recetita = r;
-                                                    }
-                                                }
-                                                if (recetita == null) {
-                                                    continue;
-                                                }
-                                                if (o.getEstado() == 5) {
-                                                    continue;
-                                                }
-                                            %>
-                                            <td class="text-center">
-                                                <%=recetita.nombre%>
-                                            </td>
-
-                                            <td class="text-center"> 
-                                                <%=o.getCantidad()%> </td>
-
-                                            <td class="text-center"> 
-                                                <%= recetita.precio * o.getCantidad()%></td>
-
-
-                                        </tr>
-                                        <%
-                                                total += recetita.precio * o.getCantidad();
-                                            }
-                                        %>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-
-                 
-                        <div class="col-md-12"><br>
-                         
-                             <form method="post" action="servBoleta" >
-                            
-                            <div class="col-md-12">                   
-                                <div  class="pull-right m-t-30 text-right">
-                                    <br>
-                                    <h4><br><br><br><br><br>
-                                        <div>Opciones de pago</div>
-                                        <br>
-
-                                    </h4>
- 
-                                    <label for="opcionwp">Pago web</label>
-                                        <input type="radio" name="pago" id="opcionwp" value="Webpay" notchecked required>
-                                        <label for="opcionefe">Efectivo</label>
-                                    <input type="radio" name="pago" id="opcionefe" value="Efectivo" notchecked required>
-
-                                    </br>
-
-                                </div>
-                            </div>
-                            
-                            <div class="pull-right m-t-30 text-right">
-
-                                <hr>
-                                <h3><b>Total :</b> $<%=total%></h3>
-                                <input name="total" value="<%=total%>" type="hidden"> 
-                            </div>
-
-                            <div class="clearfix"></div>
-
-                            <hr>
-
-
-                            <div class="text-right">
-                                
-                                <% if(total>0){ %>
-                                <button class="btn btn-danger" type="submit" >Proceder a pagar</button>
-                                <% } %>
-                            </div>
-                        
-                            </form>
-                            </div>
+         
                     </div>
                 </div>
             </div>
@@ -347,7 +221,7 @@
 
 
                     <div class="txt17 p-r-20 p-t-5 p-b-5">
-                        <a href="LoginMesa.jsp" target="_blank">Acceso administrador</a>
+                        
                     </div>
                 </div>
             </div>
@@ -398,6 +272,23 @@
     <script type="text/javascript" src="usuarios/vendor/lightbox2/js/lightbox.min.js"></script>
     <!--===============================================================================================-->
     <script src="usuarios/js/main.js"></script>
+    
+    
+    <script type="text/javascript">
+        function confirmarPago(idMesa) {
+            $.ajax({
+                type: 'GET',
+                url: 'servConfirmPago?idmesa=' + idMesa,
+                contentType: 'text/plain',
+                dataType: 'text'
+            }).done(function (r) {
+                if (r === 'si') {
+                    location.href = 'FinalizarPago.jsp'
+                }
+            });
+        }
 
-
+        setInterval(confirmarPago, 5000,<%=boletaid%>);
+    </script>
 </body>
+</html>

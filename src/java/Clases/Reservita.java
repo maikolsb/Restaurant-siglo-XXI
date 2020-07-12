@@ -26,7 +26,7 @@ public class Reservita extends Conexion {
         PreparedStatement pst = null;
 
         try {
-            String consulta = "insert into reserva (fecha,hora,cantidad,usuario_id,telefono,mesa_id,estado,fumadores) values(?,?,?,?,?,?,?)";
+            String consulta = "insert into reserva (fecha,hora,cantidad,usuario_id,telefono,mesa_id,estado,fumadores) values(?,?,?,?,?,?,?,?)";
             pst = getConnection().prepareStatement(consulta);
             pst.setString(1, fecha);
             pst.setString(2, hora);
