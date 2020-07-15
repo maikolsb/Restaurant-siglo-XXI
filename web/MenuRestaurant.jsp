@@ -46,7 +46,7 @@
 
 
         <%
-            String mesasession = (String) session.getAttribute("mesaid");
+            String mesasession = session.getAttribute("mesaid").toString();
             if (mesasession == null) {
                 response.sendRedirect("LoginMesa.jsp");
             }

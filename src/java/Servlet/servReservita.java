@@ -6,6 +6,8 @@
 package Servlet;
 
 import Clases.Reservita;
+import Controlador.Correo;
+import Dao.DaoUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -71,6 +73,21 @@ public class servReservita extends HttpServlet {
 
             Reservita re = new Reservita();
             if (re.registrar(fecha, hora, cantidad, uIdInt, telefonoInt ,mesaIdInt ,estadoInt, fumadoresInt)) {
+                
+                String userCorreo = DaoUsuario.read(uIdInt).getCorreo();
+                
+                StringBuilder sb = new StringBuilder();
+                sb.append("Estimado(a) cliente:\n");
+                sb.append("\n\n Se ha realizado una reserva para el dia ");
+                sb.append(fecha);
+                sb.append(" a las ");
+                sb.append(hora);
+                sb.append(" para ");
+                sb.append(cantidad);
+                sb.append(" personas.\n\n Le saluda atentamente, Restaurant Siglo XXI");                
+                
+                
+                //Correo.Enviar(userCorreo, "Reservacion Realizada", sb.toString());
                 response.sendRedirect("ReservacionUsuario.jsp");
             } else {
                 response.sendRedirect("error.jsp");
@@ -84,6 +101,8 @@ public class servReservita extends HttpServlet {
   
 
     }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

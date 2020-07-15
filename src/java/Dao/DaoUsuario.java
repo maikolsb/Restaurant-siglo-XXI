@@ -5,7 +5,10 @@
  */
 package Dao;
 
+import Ent.Mesa;
 import Ent.Usuario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -91,6 +94,32 @@ public class DaoUsuario {
 
             return null;
         }
+    }
+
+    public static Usuario read(int uIdInt) {
+        String sql = String.format("Select * from usuario where id = %d",uIdInt);
+        Usuario user= null;
+        Connection con = new Controlador.Conexion().getConnection();
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet curCli = pst.executeQuery();
+            if (curCli.next()) {
+                Usuario us = new Usuario(curCli.getInt("id"),
+                        curCli.getString("rut"),
+                        curCli.getString("nombre"),
+                        curCli.getString("apellidoPat"),
+                        curCli.getString("apellidoMat"),
+                        curCli.getString("correo"),
+                        curCli.getString("password"),
+                        curCli.getInt("estado"));
+
+                user = us;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        return user;
     }
 
 }

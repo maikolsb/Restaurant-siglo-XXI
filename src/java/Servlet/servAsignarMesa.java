@@ -33,11 +33,17 @@ public class servAsignarMesa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
+        if(request.getSession().getAttribute("mesaid")==null){
+            request.getSession(true).setAttribute("mesaid",1);
+            response.sendRedirect("IniciarMenu.jsp");
+            return;
+        }
+        
         String id_mesa = request.getSession().getAttribute("mesaid").toString();
         try {
            int id_mesa_int = Integer.parseInt(id_mesa);
            
-         Dao.DaoMesa.UpdateEstado(id_mesa_int ,2);
+            Dao.DaoMesa.UpdateEstado(id_mesa_int ,2);
         } catch(Exception e){
         response.sendRedirect("error.jsp");
         }
