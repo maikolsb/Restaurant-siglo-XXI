@@ -76,6 +76,31 @@ public class DaoMesa {
             return null;
         }
     }
+    
+     public static List<Mesa> All() {
+        List<Mesa> lista = new ArrayList<>();
+        String sql = String.format("Select * from mesa order by numero");
+
+        Connection con = new Controlador.Conexion().getConnection();
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet curCli = pst.executeQuery();
+            while (curCli.next()) {
+                Mesa me = new Mesa(curCli.getInt("id"),
+                        curCli.getInt("numero"),
+                        curCli.getInt("estado")
+                );
+
+                lista.add(me);
+            }
+            con.close();
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
 
     public static void UpdateEstado(int id_mesa_int, int estado) {
         Connection con = null;
@@ -83,7 +108,7 @@ public class DaoMesa {
 
         try {
             con = new Conexion().getConnection();
-            cstmt = con.prepareCall("update mesa set estado=? where id =?");
+            cstmt = con.prepareCall("update mesa set estado=? where numero =?");
             cstmt.setInt(1, estado);
             cstmt.setInt(2,id_mesa_int);
 

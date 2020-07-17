@@ -87,7 +87,7 @@ public class servReservita extends HttpServlet {
                 sb.append(" personas.\n\n Le saluda atentamente, Restaurant Siglo XXI");                
                 
                 
-                //Correo.Enviar(userCorreo, "Reservacion Realizada", sb.toString());
+                Correo.Enviar(userCorreo, "Reservacion Realizada", sb.toString());
                 response.sendRedirect("ReservacionUsuario.jsp");
             } else {
                 response.sendRedirect("error.jsp");
